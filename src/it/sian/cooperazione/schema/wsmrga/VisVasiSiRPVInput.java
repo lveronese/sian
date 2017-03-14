@@ -20,6 +20,7 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element name="CodOper" type="{http://cooperazione.sian.it/schema/wsmrga/}CUAA"/>
  *         &lt;element name="CodiceIcqrf" type="{http://cooperazione.sian.it/schema/wsmrga/}CodiceIcq"/>
+ *         &lt;element name="CodVaso" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -31,7 +32,8 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
     "codOper",
-    "codiceIcqrf"
+    "codiceIcqrf",
+    "codVaso"
 })
 @XmlRootElement(name = "VisVasiSiRPVInput")
 public class VisVasiSiRPVInput {
@@ -40,6 +42,8 @@ public class VisVasiSiRPVInput {
     protected CUAA codOper;
     @XmlElement(name = "CodiceIcqrf", required = true)
     protected String codiceIcqrf;
+    @XmlElement(name = "CodVaso")
+    protected String codVaso;
 
     /**
      * Recupera il valore della proprietà codOper.
@@ -87,6 +91,30 @@ public class VisVasiSiRPVInput {
      */
     public void setCodiceIcqrf(String value) {
         this.codiceIcqrf = value;
+    }
+
+    /**
+     * Recupera il valore della proprietà codVaso.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getCodVaso() {
+        return codVaso;
+    }
+
+    /**
+     * Imposta il valore della proprietà codVaso.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setCodVaso(String value) {
+        this.codVaso = value;
     }
 
 }

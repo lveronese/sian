@@ -1,7 +1,6 @@
 
 package it.sian.cooperazione.schema.wsmrga;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -23,15 +22,15 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="CodCategoria" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
  *         &lt;element name="AttoCert" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
  *         &lt;element name="CodClassificazione" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
- *         &lt;element name="CodDopIgp" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
- *         &lt;element name="Provenienza" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
- *         &lt;element name="CodZonaViticola" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
- *         &lt;element name="Varieta" type="{http://cooperazione.sian.it/schema/wsmrga/}Cod_ValorePerc" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="CodDopIgp" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodiceDopIgp" minOccurs="0"/>
+ *         &lt;element name="Provenienza" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
+ *         &lt;element name="CodZonaViticola" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
+ *         &lt;element name="Varieta" type="{http://cooperazione.sian.it/schema/wsmrga/}Cod_Valore" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="AltreVarieta" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoDescrizione" minOccurs="0"/>
  *         &lt;element name="CodSottozona" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
- *         &lt;element name="Biologico" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
- *         &lt;element name="Annata" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoAnnata" minOccurs="0"/>
- *         &lt;element name="TitoloAlcolEff" type="{http://cooperazione.sian.it/schema/wsmrga/}Percentuale" minOccurs="0"/>
+ *         &lt;element name="Biologico" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
+ *         &lt;element name="Annata" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoAnnataCodice" minOccurs="0"/>
+ *         &lt;element name="CodStatoFisico" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -53,7 +52,7 @@ import javax.xml.bind.annotation.XmlType;
     "codSottozona",
     "biologico",
     "annata",
-    "titoloAlcolEff"
+    "codStatoFisico"
 })
 public class SvinDesignProd2 {
 
@@ -65,22 +64,22 @@ public class SvinDesignProd2 {
     protected String codClassificazione;
     @XmlElement(name = "CodDopIgp")
     protected String codDopIgp;
-    @XmlElement(name = "Provenienza", required = true)
+    @XmlElement(name = "Provenienza")
     protected String provenienza;
-    @XmlElement(name = "CodZonaViticola", required = true)
+    @XmlElement(name = "CodZonaViticola")
     protected String codZonaViticola;
     @XmlElement(name = "Varieta")
-    protected List<CodValorePerc> varieta;
+    protected List<CodValore> varieta;
     @XmlElement(name = "AltreVarieta")
     protected String altreVarieta;
     @XmlElement(name = "CodSottozona")
     protected String codSottozona;
-    @XmlElement(name = "Biologico", required = true)
+    @XmlElement(name = "Biologico")
     protected String biologico;
     @XmlElement(name = "Annata")
-    protected TipoAnnata annata;
-    @XmlElement(name = "TitoloAlcolEff")
-    protected BigDecimal titoloAlcolEff;
+    protected TipoAnnataCodice annata;
+    @XmlElement(name = "CodStatoFisico")
+    protected String codStatoFisico;
 
     /**
      * Recupera il valore della proprietà codCategoria.
@@ -244,13 +243,13 @@ public class SvinDesignProd2 {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link CodValorePerc }
+     * {@link CodValore }
      * 
      * 
      */
-    public List<CodValorePerc> getVarieta() {
+    public List<CodValore> getVarieta() {
         if (varieta == null) {
-            varieta = new ArrayList<CodValorePerc>();
+            varieta = new ArrayList<CodValore>();
         }
         return this.varieta;
     }
@@ -332,10 +331,10 @@ public class SvinDesignProd2 {
      * 
      * @return
      *     possible object is
-     *     {@link TipoAnnata }
+     *     {@link TipoAnnataCodice }
      *     
      */
-    public TipoAnnata getAnnata() {
+    public TipoAnnataCodice getAnnata() {
         return annata;
     }
 
@@ -344,35 +343,35 @@ public class SvinDesignProd2 {
      * 
      * @param value
      *     allowed object is
-     *     {@link TipoAnnata }
+     *     {@link TipoAnnataCodice }
      *     
      */
-    public void setAnnata(TipoAnnata value) {
+    public void setAnnata(TipoAnnataCodice value) {
         this.annata = value;
     }
 
     /**
-     * Recupera il valore della proprietà titoloAlcolEff.
+     * Recupera il valore della proprietà codStatoFisico.
      * 
      * @return
      *     possible object is
-     *     {@link BigDecimal }
+     *     {@link String }
      *     
      */
-    public BigDecimal getTitoloAlcolEff() {
-        return titoloAlcolEff;
+    public String getCodStatoFisico() {
+        return codStatoFisico;
     }
 
     /**
-     * Imposta il valore della proprietà titoloAlcolEff.
+     * Imposta il valore della proprietà codStatoFisico.
      * 
      * @param value
      *     allowed object is
-     *     {@link BigDecimal }
+     *     {@link String }
      *     
      */
-    public void setTitoloAlcolEff(BigDecimal value) {
-        this.titoloAlcolEff = value;
+    public void setCodStatoFisico(String value) {
+        this.codStatoFisico = value;
     }
 
 }

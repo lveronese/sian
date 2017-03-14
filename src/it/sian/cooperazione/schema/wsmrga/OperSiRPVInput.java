@@ -7,6 +7,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -47,6 +48,7 @@ public class OperSiRPVInput {
     @XmlElement(name = "CodiceIcqrf", required = true)
     protected String codiceIcqrf;
     @XmlElement(name = "TipoRichiesta", required = true)
+    @XmlSchemaType(name = "string")
     protected TipoRichiesta tipoRichiesta;
     @XmlElement(name = "Operazione", required = true)
     protected List<OperazioneSpec> operazione;

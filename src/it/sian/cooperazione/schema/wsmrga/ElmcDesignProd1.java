@@ -23,23 +23,23 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="CodCategoria" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
  *         &lt;element name="AttoCert" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *         &lt;element name="CodClassificazione" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
- *         &lt;element name="CodDopIgp" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
+ *         &lt;element name="CodDopIgp" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodiceDopIgp" minOccurs="0"/>
  *         &lt;element name="OrigineUve" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodicePaese" minOccurs="0"/>
- *         &lt;element name="Provenienza" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
+ *         &lt;element name="Provenienza" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *         &lt;element name="PaesiProvenienza" type="{http://cooperazione.sian.it/schema/wsmrga/}PaesiProvenienza" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element name="CodZonaViticola" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
+ *         &lt;element name="CodZonaViticola" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *         &lt;element name="Varieta" type="{http://cooperazione.sian.it/schema/wsmrga/}Cod_ValorePerc" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="AltreVarieta" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoDescrizione" minOccurs="0"/>
  *         &lt;element name="CodSottozona" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *         &lt;element name="CodVigna" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
- *         &lt;element name="CodColore" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
+ *         &lt;element name="CodColore" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *         &lt;element name="Menzioni" type="{http://cooperazione.sian.it/schema/wsmrga/}Menzioni" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element name="Biologico" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
+ *         &lt;element name="Biologico" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *         &lt;element name="PraticheEnologiche" type="{http://cooperazione.sian.it/schema/wsmrga/}PraticheEnologiche" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element name="Annata" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoAnnata" minOccurs="0"/>
- *         &lt;element name="TitoloAlcolPot" type="{http://cooperazione.sian.it/schema/wsmrga/}Percentuale" minOccurs="0"/>
+ *         &lt;element name="Annata" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoAnnataCodice" minOccurs="0"/>
  *         &lt;element name="MassaVolumica" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoMassaVolume" minOccurs="0"/>
  *         &lt;element name="CodStatoFisico" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
+ *         &lt;element name="CodPartita" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -67,9 +67,9 @@ import javax.xml.bind.annotation.XmlType;
     "biologico",
     "praticheEnologiche",
     "annata",
-    "titoloAlcolPot",
     "massaVolumica",
-    "codStatoFisico"
+    "codStatoFisico",
+    "codPartita"
 })
 public class ElmcDesignProd1 {
 
@@ -83,11 +83,11 @@ public class ElmcDesignProd1 {
     protected String codDopIgp;
     @XmlElement(name = "OrigineUve")
     protected String origineUve;
-    @XmlElement(name = "Provenienza", required = true)
+    @XmlElement(name = "Provenienza")
     protected String provenienza;
     @XmlElement(name = "PaesiProvenienza")
     protected List<PaesiProvenienza> paesiProvenienza;
-    @XmlElement(name = "CodZonaViticola", required = true)
+    @XmlElement(name = "CodZonaViticola")
     protected String codZonaViticola;
     @XmlElement(name = "Varieta")
     protected List<CodValorePerc> varieta;
@@ -97,22 +97,22 @@ public class ElmcDesignProd1 {
     protected String codSottozona;
     @XmlElement(name = "CodVigna")
     protected String codVigna;
-    @XmlElement(name = "CodColore", required = true)
+    @XmlElement(name = "CodColore")
     protected String codColore;
     @XmlElement(name = "Menzioni")
     protected List<Menzioni> menzioni;
-    @XmlElement(name = "Biologico", required = true)
+    @XmlElement(name = "Biologico")
     protected String biologico;
     @XmlElement(name = "PraticheEnologiche")
     protected List<PraticheEnologiche> praticheEnologiche;
     @XmlElement(name = "Annata")
-    protected TipoAnnata annata;
-    @XmlElement(name = "TitoloAlcolPot")
-    protected BigDecimal titoloAlcolPot;
+    protected TipoAnnataCodice annata;
     @XmlElement(name = "MassaVolumica")
     protected BigDecimal massaVolumica;
     @XmlElement(name = "CodStatoFisico", required = true)
     protected String codStatoFisico;
+    @XmlElement(name = "CodPartita")
+    protected String codPartita;
 
     /**
      * Recupera il valore della proprietà codCategoria.
@@ -523,10 +523,10 @@ public class ElmcDesignProd1 {
      * 
      * @return
      *     possible object is
-     *     {@link TipoAnnata }
+     *     {@link TipoAnnataCodice }
      *     
      */
-    public TipoAnnata getAnnata() {
+    public TipoAnnataCodice getAnnata() {
         return annata;
     }
 
@@ -535,35 +535,11 @@ public class ElmcDesignProd1 {
      * 
      * @param value
      *     allowed object is
-     *     {@link TipoAnnata }
+     *     {@link TipoAnnataCodice }
      *     
      */
-    public void setAnnata(TipoAnnata value) {
+    public void setAnnata(TipoAnnataCodice value) {
         this.annata = value;
-    }
-
-    /**
-     * Recupera il valore della proprietà titoloAlcolPot.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public BigDecimal getTitoloAlcolPot() {
-        return titoloAlcolPot;
-    }
-
-    /**
-     * Imposta il valore della proprietà titoloAlcolPot.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public void setTitoloAlcolPot(BigDecimal value) {
-        this.titoloAlcolPot = value;
     }
 
     /**
@@ -612,6 +588,30 @@ public class ElmcDesignProd1 {
      */
     public void setCodStatoFisico(String value) {
         this.codStatoFisico = value;
+    }
+
+    /**
+     * Recupera il valore della proprietà codPartita.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getCodPartita() {
+        return codPartita;
+    }
+
+    /**
+     * Imposta il valore della proprietà codPartita.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setCodPartita(String value) {
+        this.codPartita = value;
     }
 
 }

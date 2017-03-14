@@ -2,8 +2,6 @@
 package it.sian.cooperazione.schema.wsmrga;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -20,10 +18,19 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="Prodotto" type="{http://cooperazione.sian.it/schema/wsmrga/}AcetDesignProd3"/>
- *         &lt;element name="CodRecipiente" type="{http://cooperazione.sian.it/schema/wsmrga/}CodRecipiente" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element name="Quantita" type="{http://cooperazione.sian.it/schema/wsmrga/}QtaKgCarico"/>
- *         &lt;element name="Partita" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoPartita" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="Prodotto">
+ *           &lt;complexType>
+ *             &lt;complexContent>
+ *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                 &lt;choice>
+ *                   &lt;element name="Designazione" type="{http://cooperazione.sian.it/schema/wsmrga/}AcetDesignProd3"/>
+ *                   &lt;element name="CodiceProdotto" type="{http://cooperazione.sian.it/schema/wsmrga/}CodiceProdotto"/>
+ *                 &lt;/choice>
+ *               &lt;/restriction>
+ *             &lt;/complexContent>
+ *           &lt;/complexType>
+ *         &lt;/element>
+ *         &lt;element name="Quantita" type="{http://cooperazione.sian.it/schema/wsmrga/}QtaKgScarico"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -35,30 +42,24 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "AcetProdotto3", propOrder = {
     "prodotto",
-    "codRecipiente",
-    "quantita",
-    "partita"
+    "quantita"
 })
 public class AcetProdotto3 {
 
     @XmlElement(name = "Prodotto", required = true)
-    protected AcetDesignProd3 prodotto;
-    @XmlElement(name = "CodRecipiente")
-    protected List<CodRecipiente> codRecipiente;
+    protected AcetProdotto3 .Prodotto prodotto;
     @XmlElement(name = "Quantita", required = true)
     protected BigDecimal quantita;
-    @XmlElement(name = "Partita")
-    protected List<TipoPartita> partita;
 
     /**
      * Recupera il valore della proprietà prodotto.
      * 
      * @return
      *     possible object is
-     *     {@link AcetDesignProd3 }
+     *     {@link AcetProdotto3 .Prodotto }
      *     
      */
-    public AcetDesignProd3 getProdotto() {
+    public AcetProdotto3 .Prodotto getProdotto() {
         return prodotto;
     }
 
@@ -67,40 +68,11 @@ public class AcetProdotto3 {
      * 
      * @param value
      *     allowed object is
-     *     {@link AcetDesignProd3 }
+     *     {@link AcetProdotto3 .Prodotto }
      *     
      */
-    public void setProdotto(AcetDesignProd3 value) {
+    public void setProdotto(AcetProdotto3 .Prodotto value) {
         this.prodotto = value;
-    }
-
-    /**
-     * Gets the value of the codRecipiente property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the codRecipiente property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getCodRecipiente().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link CodRecipiente }
-     * 
-     * 
-     */
-    public List<CodRecipiente> getCodRecipiente() {
-        if (codRecipiente == null) {
-            codRecipiente = new ArrayList<CodRecipiente>();
-        }
-        return this.codRecipiente;
     }
 
     /**
@@ -127,33 +99,87 @@ public class AcetProdotto3 {
         this.quantita = value;
     }
 
+
     /**
-     * Gets the value of the partita property.
+     * <p>Classe Java per anonymous complex type.
      * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the partita property.
+     * <p>Il seguente frammento di schema specifica il contenuto previsto contenuto in questa classe.
      * 
-     * <p>
-     * For example, to add a new item, do as follows:
      * <pre>
-     *    getPartita().add(newItem);
+     * &lt;complexType>
+     *   &lt;complexContent>
+     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *       &lt;choice>
+     *         &lt;element name="Designazione" type="{http://cooperazione.sian.it/schema/wsmrga/}AcetDesignProd3"/>
+     *         &lt;element name="CodiceProdotto" type="{http://cooperazione.sian.it/schema/wsmrga/}CodiceProdotto"/>
+     *       &lt;/choice>
+     *     &lt;/restriction>
+     *   &lt;/complexContent>
+     * &lt;/complexType>
      * </pre>
      * 
      * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link TipoPartita }
-     * 
-     * 
      */
-    public List<TipoPartita> getPartita() {
-        if (partita == null) {
-            partita = new ArrayList<TipoPartita>();
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "", propOrder = {
+        "designazione",
+        "codiceProdotto"
+    })
+    public static class Prodotto {
+
+        @XmlElement(name = "Designazione")
+        protected AcetDesignProd3 designazione;
+        @XmlElement(name = "CodiceProdotto")
+        protected CodiceProdotto codiceProdotto;
+
+        /**
+         * Recupera il valore della proprietà designazione.
+         * 
+         * @return
+         *     possible object is
+         *     {@link AcetDesignProd3 }
+         *     
+         */
+        public AcetDesignProd3 getDesignazione() {
+            return designazione;
         }
-        return this.partita;
+
+        /**
+         * Imposta il valore della proprietà designazione.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link AcetDesignProd3 }
+         *     
+         */
+        public void setDesignazione(AcetDesignProd3 value) {
+            this.designazione = value;
+        }
+
+        /**
+         * Recupera il valore della proprietà codiceProdotto.
+         * 
+         * @return
+         *     possible object is
+         *     {@link CodiceProdotto }
+         *     
+         */
+        public CodiceProdotto getCodiceProdotto() {
+            return codiceProdotto;
+        }
+
+        /**
+         * Imposta il valore della proprietà codiceProdotto.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link CodiceProdotto }
+         *     
+         */
+        public void setCodiceProdotto(CodiceProdotto value) {
+            this.codiceProdotto = value;
+        }
+
     }
 
 }

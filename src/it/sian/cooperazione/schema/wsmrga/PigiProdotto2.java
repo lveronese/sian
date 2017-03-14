@@ -18,7 +18,18 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="PigiDesignProd2" type="{http://cooperazione.sian.it/schema/wsmrga/}PigiDesignProd2"/>
+ *         &lt;element name="PigiDesignProd2">
+ *           &lt;complexType>
+ *             &lt;complexContent>
+ *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                 &lt;choice>
+ *                   &lt;element name="Designazione" type="{http://cooperazione.sian.it/schema/wsmrga/}PigiDesignProd2"/>
+ *                   &lt;element name="CodiceProdotto" type="{http://cooperazione.sian.it/schema/wsmrga/}CodiceProdotto"/>
+ *                 &lt;/choice>
+ *               &lt;/restriction>
+ *             &lt;/complexContent>
+ *           &lt;/complexType>
+ *         &lt;/element>
  *         &lt;element name="Quantita" type="{http://cooperazione.sian.it/schema/wsmrga/}QtaKgCarico"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -36,7 +47,7 @@ import javax.xml.bind.annotation.XmlType;
 public class PigiProdotto2 {
 
     @XmlElement(name = "PigiDesignProd2", required = true)
-    protected PigiDesignProd2 pigiDesignProd2;
+    protected PigiProdotto2 .PigiDesignProd2 pigiDesignProd2;
     @XmlElement(name = "Quantita", required = true)
     protected BigDecimal quantita;
 
@@ -45,10 +56,10 @@ public class PigiProdotto2 {
      * 
      * @return
      *     possible object is
-     *     {@link PigiDesignProd2 }
+     *     {@link PigiProdotto2 .PigiDesignProd2 }
      *     
      */
-    public PigiDesignProd2 getPigiDesignProd2() {
+    public PigiProdotto2 .PigiDesignProd2 getPigiDesignProd2() {
         return pigiDesignProd2;
     }
 
@@ -57,10 +68,10 @@ public class PigiProdotto2 {
      * 
      * @param value
      *     allowed object is
-     *     {@link PigiDesignProd2 }
+     *     {@link PigiProdotto2 .PigiDesignProd2 }
      *     
      */
-    public void setPigiDesignProd2(PigiDesignProd2 value) {
+    public void setPigiDesignProd2(PigiProdotto2 .PigiDesignProd2 value) {
         this.pigiDesignProd2 = value;
     }
 
@@ -86,6 +97,89 @@ public class PigiProdotto2 {
      */
     public void setQuantita(BigDecimal value) {
         this.quantita = value;
+    }
+
+
+    /**
+     * <p>Classe Java per anonymous complex type.
+     * 
+     * <p>Il seguente frammento di schema specifica il contenuto previsto contenuto in questa classe.
+     * 
+     * <pre>
+     * &lt;complexType>
+     *   &lt;complexContent>
+     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *       &lt;choice>
+     *         &lt;element name="Designazione" type="{http://cooperazione.sian.it/schema/wsmrga/}PigiDesignProd2"/>
+     *         &lt;element name="CodiceProdotto" type="{http://cooperazione.sian.it/schema/wsmrga/}CodiceProdotto"/>
+     *       &lt;/choice>
+     *     &lt;/restriction>
+     *   &lt;/complexContent>
+     * &lt;/complexType>
+     * </pre>
+     * 
+     * 
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "", propOrder = {
+        "designazione",
+        "codiceProdotto"
+    })
+    public static class PigiDesignProd2 {
+
+        @XmlElement(name = "Designazione")
+        protected it.sian.cooperazione.schema.wsmrga.PigiDesignProd2 designazione;
+        @XmlElement(name = "CodiceProdotto")
+        protected CodiceProdotto codiceProdotto;
+
+        /**
+         * Recupera il valore della proprietà designazione.
+         * 
+         * @return
+         *     possible object is
+         *     {@link it.sian.cooperazione.schema.wsmrga.PigiDesignProd2 }
+         *     
+         */
+        public it.sian.cooperazione.schema.wsmrga.PigiDesignProd2 getDesignazione() {
+            return designazione;
+        }
+
+        /**
+         * Imposta il valore della proprietà designazione.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link it.sian.cooperazione.schema.wsmrga.PigiDesignProd2 }
+         *     
+         */
+        public void setDesignazione(it.sian.cooperazione.schema.wsmrga.PigiDesignProd2 value) {
+            this.designazione = value;
+        }
+
+        /**
+         * Recupera il valore della proprietà codiceProdotto.
+         * 
+         * @return
+         *     possible object is
+         *     {@link CodiceProdotto }
+         *     
+         */
+        public CodiceProdotto getCodiceProdotto() {
+            return codiceProdotto;
+        }
+
+        /**
+         * Imposta il valore della proprietà codiceProdotto.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link CodiceProdotto }
+         *     
+         */
+        public void setCodiceProdotto(CodiceProdotto value) {
+            this.codiceProdotto = value;
+        }
+
     }
 
 }

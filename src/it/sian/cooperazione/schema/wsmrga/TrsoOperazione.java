@@ -21,9 +21,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *       &lt;sequence>
  *         &lt;element name="NumOperazione" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoNumOperazione"/>
  *         &lt;element name="DataOperazione" type="{http://www.w3.org/2001/XMLSchema}date"/>
- *         &lt;element name="EsoneroDeroga" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
- *         &lt;element name="NumGiustificativo" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoDescrizione" minOccurs="0"/>
- *         &lt;element name="DataGiustificativo" type="{http://www.w3.org/2001/XMLSchema}date" minOccurs="0"/>
  *         &lt;element name="CodCommittente" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *         &lt;element name="Note" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoDescrizione" minOccurs="0"/>
  *         &lt;element name="TrsoProdotto1" type="{http://cooperazione.sian.it/schema/wsmrga/}TrsoProdotto1"/>
@@ -40,9 +37,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
 @XmlType(name = "TrsoOperazione", propOrder = {
     "numOperazione",
     "dataOperazione",
-    "esoneroDeroga",
-    "numGiustificativo",
-    "dataGiustificativo",
     "codCommittente",
     "note",
     "trsoProdotto1",
@@ -55,13 +49,6 @@ public class TrsoOperazione {
     @XmlElement(name = "DataOperazione", required = true)
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar dataOperazione;
-    @XmlElement(name = "EsoneroDeroga", required = true)
-    protected String esoneroDeroga;
-    @XmlElement(name = "NumGiustificativo")
-    protected String numGiustificativo;
-    @XmlElement(name = "DataGiustificativo")
-    @XmlSchemaType(name = "date")
-    protected XMLGregorianCalendar dataGiustificativo;
     @XmlElement(name = "CodCommittente")
     protected String codCommittente;
     @XmlElement(name = "Note")
@@ -109,78 +96,6 @@ public class TrsoOperazione {
      */
     public void setDataOperazione(XMLGregorianCalendar value) {
         this.dataOperazione = value;
-    }
-
-    /**
-     * Recupera il valore della proprietà esoneroDeroga.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getEsoneroDeroga() {
-        return esoneroDeroga;
-    }
-
-    /**
-     * Imposta il valore della proprietà esoneroDeroga.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setEsoneroDeroga(String value) {
-        this.esoneroDeroga = value;
-    }
-
-    /**
-     * Recupera il valore della proprietà numGiustificativo.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getNumGiustificativo() {
-        return numGiustificativo;
-    }
-
-    /**
-     * Imposta il valore della proprietà numGiustificativo.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setNumGiustificativo(String value) {
-        this.numGiustificativo = value;
-    }
-
-    /**
-     * Recupera il valore della proprietà dataGiustificativo.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
-     */
-    public XMLGregorianCalendar getDataGiustificativo() {
-        return dataGiustificativo;
-    }
-
-    /**
-     * Imposta il valore della proprietà dataGiustificativo.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
-     */
-    public void setDataGiustificativo(XMLGregorianCalendar value) {
-        this.dataGiustificativo = value;
     }
 
     /**

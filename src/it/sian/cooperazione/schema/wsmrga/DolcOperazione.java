@@ -1,6 +1,8 @@
 
 package it.sian.cooperazione.schema.wsmrga;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -24,7 +26,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="CodCommittente" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *         &lt;element name="Note" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoDescrizione" minOccurs="0"/>
  *         &lt;element name="DolcProdotto1" type="{http://cooperazione.sian.it/schema/wsmrga/}DolcProdotto1"/>
- *         &lt;element name="DolcProdotto2" type="{http://cooperazione.sian.it/schema/wsmrga/}DolcProdotto2"/>
+ *         &lt;element name="DolcProdotto2" type="{http://cooperazione.sian.it/schema/wsmrga/}DolcProdotto2" maxOccurs="unbounded"/>
  *         &lt;element name="DolcProdotto3" type="{http://cooperazione.sian.it/schema/wsmrga/}DolcProdotto3"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -58,7 +60,7 @@ public class DolcOperazione {
     @XmlElement(name = "DolcProdotto1", required = true)
     protected DolcProdotto1 dolcProdotto1;
     @XmlElement(name = "DolcProdotto2", required = true)
-    protected DolcProdotto2 dolcProdotto2;
+    protected List<DolcProdotto2> dolcProdotto2;
     @XmlElement(name = "DolcProdotto3", required = true)
     protected DolcProdotto3 dolcProdotto3;
 
@@ -175,27 +177,32 @@ public class DolcOperazione {
     }
 
     /**
-     * Recupera il valore della proprietà dolcProdotto2.
+     * Gets the value of the dolcProdotto2 property.
      * 
-     * @return
-     *     possible object is
-     *     {@link DolcProdotto2 }
-     *     
-     */
-    public DolcProdotto2 getDolcProdotto2() {
-        return dolcProdotto2;
-    }
-
-    /**
-     * Imposta il valore della proprietà dolcProdotto2.
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the dolcProdotto2 property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link DolcProdotto2 }
-     *     
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getDolcProdotto2().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link DolcProdotto2 }
+     * 
+     * 
      */
-    public void setDolcProdotto2(DolcProdotto2 value) {
-        this.dolcProdotto2 = value;
+    public List<DolcProdotto2> getDolcProdotto2() {
+        if (dolcProdotto2 == null) {
+            dolcProdotto2 = new ArrayList<DolcProdotto2>();
+        }
+        return this.dolcProdotto2;
     }
 
     /**

@@ -21,7 +21,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *       &lt;sequence>
  *         &lt;element name="NumOperazione" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoNumOperazione"/>
  *         &lt;element name="DataOperazione" type="{http://www.w3.org/2001/XMLSchema}date"/>
- *         &lt;element name="EsoneroDeroga" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
  *         &lt;element name="CodCommittente" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *         &lt;element name="Note" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoDescrizione" minOccurs="0"/>
  *         &lt;element name="AcidProdotto1" type="{http://cooperazione.sian.it/schema/wsmrga/}AcidProdotto1"/>
@@ -39,7 +38,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
 @XmlType(name = "AcidOperazione", propOrder = {
     "numOperazione",
     "dataOperazione",
-    "esoneroDeroga",
     "codCommittente",
     "note",
     "acidProdotto1",
@@ -53,8 +51,6 @@ public class AcidOperazione {
     @XmlElement(name = "DataOperazione", required = true)
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar dataOperazione;
-    @XmlElement(name = "EsoneroDeroga", required = true)
-    protected String esoneroDeroga;
     @XmlElement(name = "CodCommittente")
     protected String codCommittente;
     @XmlElement(name = "Note")
@@ -104,30 +100,6 @@ public class AcidOperazione {
      */
     public void setDataOperazione(XMLGregorianCalendar value) {
         this.dataOperazione = value;
-    }
-
-    /**
-     * Recupera il valore della proprietà esoneroDeroga.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getEsoneroDeroga() {
-        return esoneroDeroga;
-    }
-
-    /**
-     * Imposta il valore della proprietà esoneroDeroga.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setEsoneroDeroga(String value) {
-        this.esoneroDeroga = value;
     }
 
     /**

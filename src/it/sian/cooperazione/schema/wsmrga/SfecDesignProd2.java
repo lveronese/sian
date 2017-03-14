@@ -21,13 +21,14 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element name="CodCategoria" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
  *         &lt;element name="CodClassificazione" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
- *         &lt;element name="CodDopIgp" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
- *         &lt;element name="Provenienza" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
- *         &lt;element name="CodZonaViticola" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
- *         &lt;element name="Varieta" type="{http://cooperazione.sian.it/schema/wsmrga/}Cod_ValorePerc" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="CodDopIgp" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodiceDopIgp" minOccurs="0"/>
+ *         &lt;element name="Provenienza" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
+ *         &lt;element name="CodZonaViticola" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
+ *         &lt;element name="Varieta" type="{http://cooperazione.sian.it/schema/wsmrga/}Cod_Valore" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="AltreVarieta" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoDescrizione" minOccurs="0"/>
  *         &lt;element name="CodSottozona" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
- *         &lt;element name="Biologico" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
+ *         &lt;element name="Biologico" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
+ *         &lt;element name="CodStatoFisico" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -46,7 +47,8 @@ import javax.xml.bind.annotation.XmlType;
     "varieta",
     "altreVarieta",
     "codSottozona",
-    "biologico"
+    "biologico",
+    "codStatoFisico"
 })
 public class SfecDesignProd2 {
 
@@ -56,18 +58,20 @@ public class SfecDesignProd2 {
     protected String codClassificazione;
     @XmlElement(name = "CodDopIgp")
     protected String codDopIgp;
-    @XmlElement(name = "Provenienza", required = true)
+    @XmlElement(name = "Provenienza")
     protected String provenienza;
-    @XmlElement(name = "CodZonaViticola", required = true)
+    @XmlElement(name = "CodZonaViticola")
     protected String codZonaViticola;
     @XmlElement(name = "Varieta")
-    protected List<CodValorePerc> varieta;
+    protected List<CodValore> varieta;
     @XmlElement(name = "AltreVarieta")
     protected String altreVarieta;
     @XmlElement(name = "CodSottozona")
     protected String codSottozona;
-    @XmlElement(name = "Biologico", required = true)
+    @XmlElement(name = "Biologico")
     protected String biologico;
+    @XmlElement(name = "CodStatoFisico")
+    protected String codStatoFisico;
 
     /**
      * Recupera il valore della proprietà codCategoria.
@@ -207,13 +211,13 @@ public class SfecDesignProd2 {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link CodValorePerc }
+     * {@link CodValore }
      * 
      * 
      */
-    public List<CodValorePerc> getVarieta() {
+    public List<CodValore> getVarieta() {
         if (varieta == null) {
-            varieta = new ArrayList<CodValorePerc>();
+            varieta = new ArrayList<CodValore>();
         }
         return this.varieta;
     }
@@ -288,6 +292,30 @@ public class SfecDesignProd2 {
      */
     public void setBiologico(String value) {
         this.biologico = value;
+    }
+
+    /**
+     * Recupera il valore della proprietà codStatoFisico.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getCodStatoFisico() {
+        return codStatoFisico;
+    }
+
+    /**
+     * Imposta il valore della proprietà codStatoFisico.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setCodStatoFisico(String value) {
+        this.codStatoFisico = value;
     }
 
 }

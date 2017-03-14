@@ -23,20 +23,20 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="CodCategoria" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
  *         &lt;element name="AttoCert" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *         &lt;element name="CodClassificazione" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
- *         &lt;element name="CodDopIgp" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
+ *         &lt;element name="CodDopIgp" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodiceDopIgp" minOccurs="0"/>
  *         &lt;element name="CodEbacchus" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *         &lt;element name="OrigineUve" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodicePaese" minOccurs="0"/>
  *         &lt;element name="Provenienza" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *         &lt;element name="PaesiProvenienza" type="{http://cooperazione.sian.it/schema/wsmrga/}PaesiProvenienza" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="CodZonaViticola" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
- *         &lt;element name="Varieta" type="{http://cooperazione.sian.it/schema/wsmrga/}Cod_ValorePerc" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="Varieta" type="{http://cooperazione.sian.it/schema/wsmrga/}Cod_Valore" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="AltreVarieta" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoDescrizione" minOccurs="0"/>
  *         &lt;element name="CodSottozona" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *         &lt;element name="CodColore" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
- *         &lt;element name="Biologico" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
- *         &lt;element name="TitoloAlcolPot" type="{http://cooperazione.sian.it/schema/wsmrga/}Percentuale" minOccurs="0"/>
+ *         &lt;element name="Biologico" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *         &lt;element name="MassaVolumica" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoMassaVolume" minOccurs="0"/>
  *         &lt;element name="CodStatoFisico" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
+ *         &lt;element name="PraticheEnologiche" type="{http://cooperazione.sian.it/schema/wsmrga/}PraticheEnologiche" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -61,9 +61,9 @@ import javax.xml.bind.annotation.XmlType;
     "codSottozona",
     "codColore",
     "biologico",
-    "titoloAlcolPot",
     "massaVolumica",
-    "codStatoFisico"
+    "codStatoFisico",
+    "praticheEnologiche"
 })
 public class SpabDesignProd3 {
 
@@ -86,21 +86,21 @@ public class SpabDesignProd3 {
     @XmlElement(name = "CodZonaViticola")
     protected String codZonaViticola;
     @XmlElement(name = "Varieta")
-    protected List<CodValorePerc> varieta;
+    protected List<CodValore> varieta;
     @XmlElement(name = "AltreVarieta")
     protected String altreVarieta;
     @XmlElement(name = "CodSottozona")
     protected String codSottozona;
     @XmlElement(name = "CodColore")
     protected String codColore;
-    @XmlElement(name = "Biologico", required = true)
+    @XmlElement(name = "Biologico")
     protected String biologico;
-    @XmlElement(name = "TitoloAlcolPot")
-    protected BigDecimal titoloAlcolPot;
     @XmlElement(name = "MassaVolumica")
     protected BigDecimal massaVolumica;
     @XmlElement(name = "CodStatoFisico", required = true)
     protected String codStatoFisico;
+    @XmlElement(name = "PraticheEnologiche")
+    protected List<PraticheEnologiche> praticheEnologiche;
 
     /**
      * Recupera il valore della proprietà codCategoria.
@@ -341,13 +341,13 @@ public class SpabDesignProd3 {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link CodValorePerc }
+     * {@link CodValore }
      * 
      * 
      */
-    public List<CodValorePerc> getVarieta() {
+    public List<CodValore> getVarieta() {
         if (varieta == null) {
-            varieta = new ArrayList<CodValorePerc>();
+            varieta = new ArrayList<CodValore>();
         }
         return this.varieta;
     }
@@ -449,30 +449,6 @@ public class SpabDesignProd3 {
     }
 
     /**
-     * Recupera il valore della proprietà titoloAlcolPot.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public BigDecimal getTitoloAlcolPot() {
-        return titoloAlcolPot;
-    }
-
-    /**
-     * Imposta il valore della proprietà titoloAlcolPot.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public void setTitoloAlcolPot(BigDecimal value) {
-        this.titoloAlcolPot = value;
-    }
-
-    /**
      * Recupera il valore della proprietà massaVolumica.
      * 
      * @return
@@ -518,6 +494,35 @@ public class SpabDesignProd3 {
      */
     public void setCodStatoFisico(String value) {
         this.codStatoFisico = value;
+    }
+
+    /**
+     * Gets the value of the praticheEnologiche property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the praticheEnologiche property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getPraticheEnologiche().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link PraticheEnologiche }
+     * 
+     * 
+     */
+    public List<PraticheEnologiche> getPraticheEnologiche() {
+        if (praticheEnologiche == null) {
+            praticheEnologiche = new ArrayList<PraticheEnologiche>();
+        }
+        return this.praticheEnologiche;
     }
 
 }

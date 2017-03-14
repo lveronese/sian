@@ -20,7 +20,19 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="Prodotto" type="{http://cooperazione.sian.it/schema/wsmrga/}SpabDesignProd2"/>
+ *         &lt;element name="Prodotto">
+ *           &lt;complexType>
+ *             &lt;complexContent>
+ *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                 &lt;choice>
+ *                   &lt;element name="Designazione" type="{http://cooperazione.sian.it/schema/wsmrga/}SpabDesignProd2"/>
+ *                   &lt;element name="CodiceProdotto" type="{http://cooperazione.sian.it/schema/wsmrga/}CodiceProdotto"/>
+ *                 &lt;/choice>
+ *               &lt;/restriction>
+ *             &lt;/complexContent>
+ *           &lt;/complexType>
+ *         &lt;/element>
+ *         &lt;element name="TitoloAlcolTot" type="{http://cooperazione.sian.it/schema/wsmrga/}Percentuale"/>
  *         &lt;element name="CodRecipiente" type="{http://cooperazione.sian.it/schema/wsmrga/}CodRecipiente" maxOccurs="unbounded"/>
  *         &lt;element name="Quantita" type="{http://cooperazione.sian.it/schema/wsmrga/}QtaKgScarico"/>
  *       &lt;/sequence>
@@ -34,13 +46,16 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "SpabProdotto2", propOrder = {
     "prodotto",
+    "titoloAlcolTot",
     "codRecipiente",
     "quantita"
 })
 public class SpabProdotto2 {
 
     @XmlElement(name = "Prodotto", required = true)
-    protected SpabDesignProd2 prodotto;
+    protected SpabProdotto2 .Prodotto prodotto;
+    @XmlElement(name = "TitoloAlcolTot", required = true)
+    protected BigDecimal titoloAlcolTot;
     @XmlElement(name = "CodRecipiente", required = true)
     protected List<CodRecipiente> codRecipiente;
     @XmlElement(name = "Quantita", required = true)
@@ -51,10 +66,10 @@ public class SpabProdotto2 {
      * 
      * @return
      *     possible object is
-     *     {@link SpabDesignProd2 }
+     *     {@link SpabProdotto2 .Prodotto }
      *     
      */
-    public SpabDesignProd2 getProdotto() {
+    public SpabProdotto2 .Prodotto getProdotto() {
         return prodotto;
     }
 
@@ -63,11 +78,35 @@ public class SpabProdotto2 {
      * 
      * @param value
      *     allowed object is
-     *     {@link SpabDesignProd2 }
+     *     {@link SpabProdotto2 .Prodotto }
      *     
      */
-    public void setProdotto(SpabDesignProd2 value) {
+    public void setProdotto(SpabProdotto2 .Prodotto value) {
         this.prodotto = value;
+    }
+
+    /**
+     * Recupera il valore della proprietà titoloAlcolTot.
+     * 
+     * @return
+     *     possible object is
+     *     {@link BigDecimal }
+     *     
+     */
+    public BigDecimal getTitoloAlcolTot() {
+        return titoloAlcolTot;
+    }
+
+    /**
+     * Imposta il valore della proprietà titoloAlcolTot.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link BigDecimal }
+     *     
+     */
+    public void setTitoloAlcolTot(BigDecimal value) {
+        this.titoloAlcolTot = value;
     }
 
     /**
@@ -121,6 +160,89 @@ public class SpabProdotto2 {
      */
     public void setQuantita(BigDecimal value) {
         this.quantita = value;
+    }
+
+
+    /**
+     * <p>Classe Java per anonymous complex type.
+     * 
+     * <p>Il seguente frammento di schema specifica il contenuto previsto contenuto in questa classe.
+     * 
+     * <pre>
+     * &lt;complexType>
+     *   &lt;complexContent>
+     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *       &lt;choice>
+     *         &lt;element name="Designazione" type="{http://cooperazione.sian.it/schema/wsmrga/}SpabDesignProd2"/>
+     *         &lt;element name="CodiceProdotto" type="{http://cooperazione.sian.it/schema/wsmrga/}CodiceProdotto"/>
+     *       &lt;/choice>
+     *     &lt;/restriction>
+     *   &lt;/complexContent>
+     * &lt;/complexType>
+     * </pre>
+     * 
+     * 
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "", propOrder = {
+        "designazione",
+        "codiceProdotto"
+    })
+    public static class Prodotto {
+
+        @XmlElement(name = "Designazione")
+        protected SpabDesignProd2 designazione;
+        @XmlElement(name = "CodiceProdotto")
+        protected CodiceProdotto codiceProdotto;
+
+        /**
+         * Recupera il valore della proprietà designazione.
+         * 
+         * @return
+         *     possible object is
+         *     {@link SpabDesignProd2 }
+         *     
+         */
+        public SpabDesignProd2 getDesignazione() {
+            return designazione;
+        }
+
+        /**
+         * Imposta il valore della proprietà designazione.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link SpabDesignProd2 }
+         *     
+         */
+        public void setDesignazione(SpabDesignProd2 value) {
+            this.designazione = value;
+        }
+
+        /**
+         * Recupera il valore della proprietà codiceProdotto.
+         * 
+         * @return
+         *     possible object is
+         *     {@link CodiceProdotto }
+         *     
+         */
+        public CodiceProdotto getCodiceProdotto() {
+            return codiceProdotto;
+        }
+
+        /**
+         * Imposta il valore della proprietà codiceProdotto.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link CodiceProdotto }
+         *     
+         */
+        public void setCodiceProdotto(CodiceProdotto value) {
+            this.codiceProdotto = value;
+        }
+
     }
 
 }

@@ -20,7 +20,21 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="Prodotto" type="{http://cooperazione.sian.it/schema/wsmrga/}AcidDesignProd1"/>
+ *         &lt;element name="Prodotto">
+ *           &lt;complexType>
+ *             &lt;complexContent>
+ *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                 &lt;choice>
+ *                   &lt;element name="Designazione" type="{http://cooperazione.sian.it/schema/wsmrga/}AcidDesignProd1"/>
+ *                   &lt;element name="CodiceProdotto" type="{http://cooperazione.sian.it/schema/wsmrga/}CodiceProdotto"/>
+ *                 &lt;/choice>
+ *               &lt;/restriction>
+ *             &lt;/complexContent>
+ *           &lt;/complexType>
+ *         &lt;/element>
+ *         &lt;element name="CodTenoreZucc" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
+ *         &lt;element name="TitoloAlcolTot" type="{http://cooperazione.sian.it/schema/wsmrga/}Percentuale" minOccurs="0"/>
+ *         &lt;element name="PercIgp" type="{http://cooperazione.sian.it/schema/wsmrga/}Percentuale" minOccurs="0"/>
  *         &lt;element name="CodRecipiente" type="{http://cooperazione.sian.it/schema/wsmrga/}CodRecipiente" maxOccurs="unbounded"/>
  *         &lt;element name="Quantita" type="{http://cooperazione.sian.it/schema/wsmrga/}QtaKgScarico"/>
  *       &lt;/sequence>
@@ -34,13 +48,22 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "AcidProdotto1", propOrder = {
     "prodotto",
+    "codTenoreZucc",
+    "titoloAlcolTot",
+    "percIgp",
     "codRecipiente",
     "quantita"
 })
 public class AcidProdotto1 {
 
     @XmlElement(name = "Prodotto", required = true)
-    protected AcidDesignProd1 prodotto;
+    protected AcidProdotto1 .Prodotto prodotto;
+    @XmlElement(name = "CodTenoreZucc")
+    protected String codTenoreZucc;
+    @XmlElement(name = "TitoloAlcolTot")
+    protected BigDecimal titoloAlcolTot;
+    @XmlElement(name = "PercIgp")
+    protected BigDecimal percIgp;
     @XmlElement(name = "CodRecipiente", required = true)
     protected List<CodRecipiente> codRecipiente;
     @XmlElement(name = "Quantita", required = true)
@@ -51,10 +74,10 @@ public class AcidProdotto1 {
      * 
      * @return
      *     possible object is
-     *     {@link AcidDesignProd1 }
+     *     {@link AcidProdotto1 .Prodotto }
      *     
      */
-    public AcidDesignProd1 getProdotto() {
+    public AcidProdotto1 .Prodotto getProdotto() {
         return prodotto;
     }
 
@@ -63,11 +86,83 @@ public class AcidProdotto1 {
      * 
      * @param value
      *     allowed object is
-     *     {@link AcidDesignProd1 }
+     *     {@link AcidProdotto1 .Prodotto }
      *     
      */
-    public void setProdotto(AcidDesignProd1 value) {
+    public void setProdotto(AcidProdotto1 .Prodotto value) {
         this.prodotto = value;
+    }
+
+    /**
+     * Recupera il valore della proprietà codTenoreZucc.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getCodTenoreZucc() {
+        return codTenoreZucc;
+    }
+
+    /**
+     * Imposta il valore della proprietà codTenoreZucc.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setCodTenoreZucc(String value) {
+        this.codTenoreZucc = value;
+    }
+
+    /**
+     * Recupera il valore della proprietà titoloAlcolTot.
+     * 
+     * @return
+     *     possible object is
+     *     {@link BigDecimal }
+     *     
+     */
+    public BigDecimal getTitoloAlcolTot() {
+        return titoloAlcolTot;
+    }
+
+    /**
+     * Imposta il valore della proprietà titoloAlcolTot.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link BigDecimal }
+     *     
+     */
+    public void setTitoloAlcolTot(BigDecimal value) {
+        this.titoloAlcolTot = value;
+    }
+
+    /**
+     * Recupera il valore della proprietà percIgp.
+     * 
+     * @return
+     *     possible object is
+     *     {@link BigDecimal }
+     *     
+     */
+    public BigDecimal getPercIgp() {
+        return percIgp;
+    }
+
+    /**
+     * Imposta il valore della proprietà percIgp.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link BigDecimal }
+     *     
+     */
+    public void setPercIgp(BigDecimal value) {
+        this.percIgp = value;
     }
 
     /**
@@ -121,6 +216,89 @@ public class AcidProdotto1 {
      */
     public void setQuantita(BigDecimal value) {
         this.quantita = value;
+    }
+
+
+    /**
+     * <p>Classe Java per anonymous complex type.
+     * 
+     * <p>Il seguente frammento di schema specifica il contenuto previsto contenuto in questa classe.
+     * 
+     * <pre>
+     * &lt;complexType>
+     *   &lt;complexContent>
+     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *       &lt;choice>
+     *         &lt;element name="Designazione" type="{http://cooperazione.sian.it/schema/wsmrga/}AcidDesignProd1"/>
+     *         &lt;element name="CodiceProdotto" type="{http://cooperazione.sian.it/schema/wsmrga/}CodiceProdotto"/>
+     *       &lt;/choice>
+     *     &lt;/restriction>
+     *   &lt;/complexContent>
+     * &lt;/complexType>
+     * </pre>
+     * 
+     * 
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "", propOrder = {
+        "designazione",
+        "codiceProdotto"
+    })
+    public static class Prodotto {
+
+        @XmlElement(name = "Designazione")
+        protected AcidDesignProd1 designazione;
+        @XmlElement(name = "CodiceProdotto")
+        protected CodiceProdotto codiceProdotto;
+
+        /**
+         * Recupera il valore della proprietà designazione.
+         * 
+         * @return
+         *     possible object is
+         *     {@link AcidDesignProd1 }
+         *     
+         */
+        public AcidDesignProd1 getDesignazione() {
+            return designazione;
+        }
+
+        /**
+         * Imposta il valore della proprietà designazione.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link AcidDesignProd1 }
+         *     
+         */
+        public void setDesignazione(AcidDesignProd1 value) {
+            this.designazione = value;
+        }
+
+        /**
+         * Recupera il valore della proprietà codiceProdotto.
+         * 
+         * @return
+         *     possible object is
+         *     {@link CodiceProdotto }
+         *     
+         */
+        public CodiceProdotto getCodiceProdotto() {
+            return codiceProdotto;
+        }
+
+        /**
+         * Imposta il valore della proprietà codiceProdotto.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link CodiceProdotto }
+         *     
+         */
+        public void setCodiceProdotto(CodiceProdotto value) {
+            this.codiceProdotto = value;
+        }
+
     }
 
 }

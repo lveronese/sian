@@ -1,13 +1,14 @@
 
 package it.sian.cooperazione.schema.wsmrga;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
@@ -23,11 +24,10 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="CodCategoria" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
  *         &lt;element name="AttoCert" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *         &lt;element name="CodClassificazione" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
- *         &lt;element name="CodDopIgp" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
- *         &lt;element name="PercIgp" type="{http://cooperazione.sian.it/schema/wsmrga/}Percentuale" minOccurs="0"/>
+ *         &lt;element name="CodDopIgp" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodiceDopIgp" minOccurs="0"/>
  *         &lt;element name="CodEbacchus" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *         &lt;element name="OrigineUve" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodicePaese" minOccurs="0"/>
- *         &lt;element name="Provenienza" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
+ *         &lt;element name="Provenienza" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *         &lt;element name="PaesiProvenienza" type="{http://cooperazione.sian.it/schema/wsmrga/}PaesiProvenienza" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="CodZonaViticola" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
  *         &lt;element name="Varieta" type="{http://cooperazione.sian.it/schema/wsmrga/}Cod_ValorePerc" maxOccurs="unbounded" minOccurs="0"/>
@@ -36,11 +36,12 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="CodVigna" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *         &lt;element name="CodColore" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *         &lt;element name="Menzioni" type="{http://cooperazione.sian.it/schema/wsmrga/}Menzioni" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element name="Biologico" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
+ *         &lt;element name="Biologico" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *         &lt;element name="PraticheEnologiche" type="{http://cooperazione.sian.it/schema/wsmrga/}PraticheEnologiche" maxOccurs="unbounded"/>
  *         &lt;element name="Annata" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoAnnata" minOccurs="0"/>
- *         &lt;element name="TitoloAlcolEff" type="{http://cooperazione.sian.it/schema/wsmrga/}Percentuale" minOccurs="0"/>
- *         &lt;element name="TitoloAlcolTot" type="{http://cooperazione.sian.it/schema/wsmrga/}Percentuale" minOccurs="0"/>
+ *         &lt;element name="CodPartita" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
+ *         &lt;element name="DataCertDOP" type="{http://www.w3.org/2001/XMLSchema}date" minOccurs="0"/>
+ *         &lt;element name="NumCertDOP" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *         &lt;element name="CodStatoFisico" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -56,7 +57,6 @@ import javax.xml.bind.annotation.XmlType;
     "attoCert",
     "codClassificazione",
     "codDopIgp",
-    "percIgp",
     "codEbacchus",
     "origineUve",
     "provenienza",
@@ -71,8 +71,9 @@ import javax.xml.bind.annotation.XmlType;
     "biologico",
     "praticheEnologiche",
     "annata",
-    "titoloAlcolEff",
-    "titoloAlcolTot",
+    "codPartita",
+    "dataCertDOP",
+    "numCertDOP",
     "codStatoFisico"
 })
 public class DolcDesignProd3 {
@@ -85,13 +86,11 @@ public class DolcDesignProd3 {
     protected String codClassificazione;
     @XmlElement(name = "CodDopIgp")
     protected String codDopIgp;
-    @XmlElement(name = "PercIgp")
-    protected BigDecimal percIgp;
     @XmlElement(name = "CodEbacchus")
     protected String codEbacchus;
     @XmlElement(name = "OrigineUve")
     protected String origineUve;
-    @XmlElement(name = "Provenienza", required = true)
+    @XmlElement(name = "Provenienza")
     protected String provenienza;
     @XmlElement(name = "PaesiProvenienza")
     protected List<PaesiProvenienza> paesiProvenienza;
@@ -109,16 +108,19 @@ public class DolcDesignProd3 {
     protected String codColore;
     @XmlElement(name = "Menzioni")
     protected List<Menzioni> menzioni;
-    @XmlElement(name = "Biologico", required = true)
+    @XmlElement(name = "Biologico")
     protected String biologico;
     @XmlElement(name = "PraticheEnologiche", required = true)
     protected List<PraticheEnologiche> praticheEnologiche;
     @XmlElement(name = "Annata")
     protected TipoAnnata annata;
-    @XmlElement(name = "TitoloAlcolEff")
-    protected BigDecimal titoloAlcolEff;
-    @XmlElement(name = "TitoloAlcolTot")
-    protected BigDecimal titoloAlcolTot;
+    @XmlElement(name = "CodPartita")
+    protected String codPartita;
+    @XmlElement(name = "DataCertDOP")
+    @XmlSchemaType(name = "date")
+    protected XMLGregorianCalendar dataCertDOP;
+    @XmlElement(name = "NumCertDOP")
+    protected String numCertDOP;
     @XmlElement(name = "CodStatoFisico", required = true)
     protected String codStatoFisico;
 
@@ -216,30 +218,6 @@ public class DolcDesignProd3 {
      */
     public void setCodDopIgp(String value) {
         this.codDopIgp = value;
-    }
-
-    /**
-     * Recupera il valore della proprietà percIgp.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public BigDecimal getPercIgp() {
-        return percIgp;
-    }
-
-    /**
-     * Imposta il valore della proprietà percIgp.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public void setPercIgp(BigDecimal value) {
-        this.percIgp = value;
     }
 
     /**
@@ -599,51 +577,75 @@ public class DolcDesignProd3 {
     }
 
     /**
-     * Recupera il valore della proprietà titoloAlcolEff.
+     * Recupera il valore della proprietà codPartita.
      * 
      * @return
      *     possible object is
-     *     {@link BigDecimal }
+     *     {@link String }
      *     
      */
-    public BigDecimal getTitoloAlcolEff() {
-        return titoloAlcolEff;
+    public String getCodPartita() {
+        return codPartita;
     }
 
     /**
-     * Imposta il valore della proprietà titoloAlcolEff.
+     * Imposta il valore della proprietà codPartita.
      * 
      * @param value
      *     allowed object is
-     *     {@link BigDecimal }
+     *     {@link String }
      *     
      */
-    public void setTitoloAlcolEff(BigDecimal value) {
-        this.titoloAlcolEff = value;
+    public void setCodPartita(String value) {
+        this.codPartita = value;
     }
 
     /**
-     * Recupera il valore della proprietà titoloAlcolTot.
+     * Recupera il valore della proprietà dataCertDOP.
      * 
      * @return
      *     possible object is
-     *     {@link BigDecimal }
+     *     {@link XMLGregorianCalendar }
      *     
      */
-    public BigDecimal getTitoloAlcolTot() {
-        return titoloAlcolTot;
+    public XMLGregorianCalendar getDataCertDOP() {
+        return dataCertDOP;
     }
 
     /**
-     * Imposta il valore della proprietà titoloAlcolTot.
+     * Imposta il valore della proprietà dataCertDOP.
      * 
      * @param value
      *     allowed object is
-     *     {@link BigDecimal }
+     *     {@link XMLGregorianCalendar }
      *     
      */
-    public void setTitoloAlcolTot(BigDecimal value) {
-        this.titoloAlcolTot = value;
+    public void setDataCertDOP(XMLGregorianCalendar value) {
+        this.dataCertDOP = value;
+    }
+
+    /**
+     * Recupera il valore della proprietà numCertDOP.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getNumCertDOP() {
+        return numCertDOP;
+    }
+
+    /**
+     * Imposta il valore della proprietà numCertDOP.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setNumCertDOP(String value) {
+        this.numCertDOP = value;
     }
 
     /**

@@ -18,7 +18,8 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="CodCategoria" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
- *         &lt;element name="Biologico" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
+ *         &lt;element name="CodClassificazione" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
+ *         &lt;element name="Biologico" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *         &lt;element name="CodStatoFisico" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -31,6 +32,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "AvltDesignProd2", propOrder = {
     "codCategoria",
+    "codClassificazione",
     "biologico",
     "codStatoFisico"
 })
@@ -38,7 +40,9 @@ public class AvltDesignProd2 {
 
     @XmlElement(name = "CodCategoria", required = true)
     protected String codCategoria;
-    @XmlElement(name = "Biologico", required = true)
+    @XmlElement(name = "CodClassificazione")
+    protected String codClassificazione;
+    @XmlElement(name = "Biologico")
     protected String biologico;
     @XmlElement(name = "CodStatoFisico", required = true)
     protected String codStatoFisico;
@@ -65,6 +69,30 @@ public class AvltDesignProd2 {
      */
     public void setCodCategoria(String value) {
         this.codCategoria = value;
+    }
+
+    /**
+     * Recupera il valore della proprietà codClassificazione.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getCodClassificazione() {
+        return codClassificazione;
+    }
+
+    /**
+     * Imposta il valore della proprietà codClassificazione.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setCodClassificazione(String value) {
+        this.codClassificazione = value;
     }
 
     /**

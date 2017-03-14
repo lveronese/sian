@@ -1,6 +1,8 @@
 
 package it.sian.cooperazione.schema.wsmrga;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -24,8 +26,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="CodCommittente" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *         &lt;element name="Note" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoDescrizione" minOccurs="0"/>
  *         &lt;element name="SfecProdotto1" type="{http://cooperazione.sian.it/schema/wsmrga/}SfecProdotto1"/>
- *         &lt;element name="SfecProdotto2" type="{http://cooperazione.sian.it/schema/wsmrga/}SfecProdotto2"/>
- *         &lt;element name="SfecProdotto3" type="{http://cooperazione.sian.it/schema/wsmrga/}SfecProdotto3"/>
+ *         &lt;element name="SfecProdotto2" type="{http://cooperazione.sian.it/schema/wsmrga/}SfecProdotto2" minOccurs="0"/>
+ *         &lt;element name="SfecProdotto3" type="{http://cooperazione.sian.it/schema/wsmrga/}SfecProdotto3" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -57,10 +59,10 @@ public class SfecOperazione {
     protected String note;
     @XmlElement(name = "SfecProdotto1", required = true)
     protected SfecProdotto1 sfecProdotto1;
-    @XmlElement(name = "SfecProdotto2", required = true)
+    @XmlElement(name = "SfecProdotto2")
     protected SfecProdotto2 sfecProdotto2;
-    @XmlElement(name = "SfecProdotto3", required = true)
-    protected SfecProdotto3 sfecProdotto3;
+    @XmlElement(name = "SfecProdotto3")
+    protected List<SfecProdotto3> sfecProdotto3;
 
     /**
      * Recupera il valore della proprietà numOperazione.
@@ -199,27 +201,32 @@ public class SfecOperazione {
     }
 
     /**
-     * Recupera il valore della proprietà sfecProdotto3.
+     * Gets the value of the sfecProdotto3 property.
      * 
-     * @return
-     *     possible object is
-     *     {@link SfecProdotto3 }
-     *     
-     */
-    public SfecProdotto3 getSfecProdotto3() {
-        return sfecProdotto3;
-    }
-
-    /**
-     * Imposta il valore della proprietà sfecProdotto3.
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the sfecProdotto3 property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link SfecProdotto3 }
-     *     
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getSfecProdotto3().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link SfecProdotto3 }
+     * 
+     * 
      */
-    public void setSfecProdotto3(SfecProdotto3 value) {
-        this.sfecProdotto3 = value;
+    public List<SfecProdotto3> getSfecProdotto3() {
+        if (sfecProdotto3 == null) {
+            sfecProdotto3 = new ArrayList<SfecProdotto3>();
+        }
+        return this.sfecProdotto3;
     }
 
 }

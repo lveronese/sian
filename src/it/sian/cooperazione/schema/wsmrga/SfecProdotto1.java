@@ -20,7 +20,19 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="Prodotto" type="{http://cooperazione.sian.it/schema/wsmrga/}SfecDesignProd1"/>
+ *         &lt;element name="Prodotto">
+ *           &lt;complexType>
+ *             &lt;complexContent>
+ *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                 &lt;choice>
+ *                   &lt;element name="Designazione" type="{http://cooperazione.sian.it/schema/wsmrga/}SfecDesignProd1"/>
+ *                   &lt;element name="CodiceProdotto" type="{http://cooperazione.sian.it/schema/wsmrga/}CodiceProdotto"/>
+ *                 &lt;/choice>
+ *               &lt;/restriction>
+ *             &lt;/complexContent>
+ *           &lt;/complexType>
+ *         &lt;/element>
+ *         &lt;element name="PercIgp" type="{http://cooperazione.sian.it/schema/wsmrga/}Percentuale" minOccurs="0"/>
  *         &lt;element name="CodRecipiente" type="{http://cooperazione.sian.it/schema/wsmrga/}CodRecipiente" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="Quantita" type="{http://cooperazione.sian.it/schema/wsmrga/}QtaKgScarico"/>
  *       &lt;/sequence>
@@ -34,13 +46,16 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "SfecProdotto1", propOrder = {
     "prodotto",
+    "percIgp",
     "codRecipiente",
     "quantita"
 })
 public class SfecProdotto1 {
 
     @XmlElement(name = "Prodotto", required = true)
-    protected SfecDesignProd1 prodotto;
+    protected SfecProdotto1 .Prodotto prodotto;
+    @XmlElement(name = "PercIgp")
+    protected BigDecimal percIgp;
     @XmlElement(name = "CodRecipiente")
     protected List<CodRecipiente> codRecipiente;
     @XmlElement(name = "Quantita", required = true)
@@ -51,10 +66,10 @@ public class SfecProdotto1 {
      * 
      * @return
      *     possible object is
-     *     {@link SfecDesignProd1 }
+     *     {@link SfecProdotto1 .Prodotto }
      *     
      */
-    public SfecDesignProd1 getProdotto() {
+    public SfecProdotto1 .Prodotto getProdotto() {
         return prodotto;
     }
 
@@ -63,11 +78,35 @@ public class SfecProdotto1 {
      * 
      * @param value
      *     allowed object is
-     *     {@link SfecDesignProd1 }
+     *     {@link SfecProdotto1 .Prodotto }
      *     
      */
-    public void setProdotto(SfecDesignProd1 value) {
+    public void setProdotto(SfecProdotto1 .Prodotto value) {
         this.prodotto = value;
+    }
+
+    /**
+     * Recupera il valore della proprietà percIgp.
+     * 
+     * @return
+     *     possible object is
+     *     {@link BigDecimal }
+     *     
+     */
+    public BigDecimal getPercIgp() {
+        return percIgp;
+    }
+
+    /**
+     * Imposta il valore della proprietà percIgp.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link BigDecimal }
+     *     
+     */
+    public void setPercIgp(BigDecimal value) {
+        this.percIgp = value;
     }
 
     /**
@@ -121,6 +160,89 @@ public class SfecProdotto1 {
      */
     public void setQuantita(BigDecimal value) {
         this.quantita = value;
+    }
+
+
+    /**
+     * <p>Classe Java per anonymous complex type.
+     * 
+     * <p>Il seguente frammento di schema specifica il contenuto previsto contenuto in questa classe.
+     * 
+     * <pre>
+     * &lt;complexType>
+     *   &lt;complexContent>
+     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *       &lt;choice>
+     *         &lt;element name="Designazione" type="{http://cooperazione.sian.it/schema/wsmrga/}SfecDesignProd1"/>
+     *         &lt;element name="CodiceProdotto" type="{http://cooperazione.sian.it/schema/wsmrga/}CodiceProdotto"/>
+     *       &lt;/choice>
+     *     &lt;/restriction>
+     *   &lt;/complexContent>
+     * &lt;/complexType>
+     * </pre>
+     * 
+     * 
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "", propOrder = {
+        "designazione",
+        "codiceProdotto"
+    })
+    public static class Prodotto {
+
+        @XmlElement(name = "Designazione")
+        protected SfecDesignProd1 designazione;
+        @XmlElement(name = "CodiceProdotto")
+        protected CodiceProdotto codiceProdotto;
+
+        /**
+         * Recupera il valore della proprietà designazione.
+         * 
+         * @return
+         *     possible object is
+         *     {@link SfecDesignProd1 }
+         *     
+         */
+        public SfecDesignProd1 getDesignazione() {
+            return designazione;
+        }
+
+        /**
+         * Imposta il valore della proprietà designazione.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link SfecDesignProd1 }
+         *     
+         */
+        public void setDesignazione(SfecDesignProd1 value) {
+            this.designazione = value;
+        }
+
+        /**
+         * Recupera il valore della proprietà codiceProdotto.
+         * 
+         * @return
+         *     possible object is
+         *     {@link CodiceProdotto }
+         *     
+         */
+        public CodiceProdotto getCodiceProdotto() {
+            return codiceProdotto;
+        }
+
+        /**
+         * Imposta il valore della proprietà codiceProdotto.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link CodiceProdotto }
+         *     
+         */
+        public void setCodiceProdotto(CodiceProdotto value) {
+            this.codiceProdotto = value;
+        }
+
     }
 
 }

@@ -1,7 +1,6 @@
 
 package it.sian.cooperazione.schema.wsmrga;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -26,10 +25,8 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="Provenienza" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *         &lt;element name="PaesiProvenienza" type="{http://cooperazione.sian.it/schema/wsmrga/}PaesiProvenienza" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="CodColore" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
- *         &lt;element name="Biologico" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
+ *         &lt;element name="Biologico" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *         &lt;element name="PraticheEnologiche" type="{http://cooperazione.sian.it/schema/wsmrga/}PraticheEnologiche" maxOccurs="unbounded"/>
- *         &lt;element name="TitoloAlcolEff" type="{http://cooperazione.sian.it/schema/wsmrga/}Percentuale" minOccurs="0"/>
- *         &lt;element name="TitoloAlcolTot" type="{http://cooperazione.sian.it/schema/wsmrga/}Percentuale" minOccurs="0"/>
  *         &lt;element name="CodStatoFisico" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -49,8 +46,6 @@ import javax.xml.bind.annotation.XmlType;
     "codColore",
     "biologico",
     "praticheEnologiche",
-    "titoloAlcolEff",
-    "titoloAlcolTot",
     "codStatoFisico"
 })
 public class EvalDesignProd3 {
@@ -67,14 +62,10 @@ public class EvalDesignProd3 {
     protected List<PaesiProvenienza> paesiProvenienza;
     @XmlElement(name = "CodColore")
     protected String codColore;
-    @XmlElement(name = "Biologico", required = true)
+    @XmlElement(name = "Biologico")
     protected String biologico;
     @XmlElement(name = "PraticheEnologiche", required = true)
     protected List<PraticheEnologiche> praticheEnologiche;
-    @XmlElement(name = "TitoloAlcolEff")
-    protected BigDecimal titoloAlcolEff;
-    @XmlElement(name = "TitoloAlcolTot")
-    protected BigDecimal titoloAlcolTot;
     @XmlElement(name = "CodStatoFisico", required = true)
     protected String codStatoFisico;
 
@@ -278,54 +269,6 @@ public class EvalDesignProd3 {
             praticheEnologiche = new ArrayList<PraticheEnologiche>();
         }
         return this.praticheEnologiche;
-    }
-
-    /**
-     * Recupera il valore della proprietà titoloAlcolEff.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public BigDecimal getTitoloAlcolEff() {
-        return titoloAlcolEff;
-    }
-
-    /**
-     * Imposta il valore della proprietà titoloAlcolEff.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public void setTitoloAlcolEff(BigDecimal value) {
-        this.titoloAlcolEff = value;
-    }
-
-    /**
-     * Recupera il valore della proprietà titoloAlcolTot.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public BigDecimal getTitoloAlcolTot() {
-        return titoloAlcolTot;
-    }
-
-    /**
-     * Imposta il valore della proprietà titoloAlcolTot.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public void setTitoloAlcolTot(BigDecimal value) {
-        this.titoloAlcolTot = value;
     }
 
     /**

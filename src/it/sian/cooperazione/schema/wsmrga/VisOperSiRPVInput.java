@@ -24,10 +24,11 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="CodiceIcqrf" type="{http://cooperazione.sian.it/schema/wsmrga/}CodiceIcq"/>
  *         &lt;element name="DataOperIni" type="{http://www.w3.org/2001/XMLSchema}date"/>
  *         &lt;element name="DataOperFine" type="{http://www.w3.org/2001/XMLSchema}date" minOccurs="0"/>
+ *         &lt;element name="NumOperazione" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoNumOperazione" minOccurs="0"/>
  *         &lt;element name="CodiceFornDest" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *         &lt;element name="CodOperazione" type="{http://cooperazione.sian.it/schema/wsmrga/}CodiceOperazione" minOccurs="0"/>
  *         &lt;element name="Categoria" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
- *         &lt;element name="CodiceCommittente" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
+ *         &lt;element name="CodCommittente" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -42,10 +43,11 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "codiceIcqrf",
     "dataOperIni",
     "dataOperFine",
+    "numOperazione",
     "codiceFornDest",
     "codOperazione",
     "categoria",
-    "codiceCommittente"
+    "codCommittente"
 })
 @XmlRootElement(name = "VisOperSiRPVInput")
 public class VisOperSiRPVInput {
@@ -60,14 +62,17 @@ public class VisOperSiRPVInput {
     @XmlElement(name = "DataOperFine")
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar dataOperFine;
+    @XmlElement(name = "NumOperazione")
+    protected Integer numOperazione;
     @XmlElement(name = "CodiceFornDest")
     protected String codiceFornDest;
     @XmlElement(name = "CodOperazione")
+    @XmlSchemaType(name = "string")
     protected CodiceOperazione codOperazione;
     @XmlElement(name = "Categoria")
     protected String categoria;
-    @XmlElement(name = "CodiceCommittente")
-    protected String codiceCommittente;
+    @XmlElement(name = "CodCommittente")
+    protected String codCommittente;
 
     /**
      * Recupera il valore della proprietà codOper.
@@ -166,6 +171,30 @@ public class VisOperSiRPVInput {
     }
 
     /**
+     * Recupera il valore della proprietà numOperazione.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Integer }
+     *     
+     */
+    public Integer getNumOperazione() {
+        return numOperazione;
+    }
+
+    /**
+     * Imposta il valore della proprietà numOperazione.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Integer }
+     *     
+     */
+    public void setNumOperazione(Integer value) {
+        this.numOperazione = value;
+    }
+
+    /**
      * Recupera il valore della proprietà codiceFornDest.
      * 
      * @return
@@ -238,27 +267,27 @@ public class VisOperSiRPVInput {
     }
 
     /**
-     * Recupera il valore della proprietà codiceCommittente.
+     * Recupera il valore della proprietà codCommittente.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getCodiceCommittente() {
-        return codiceCommittente;
+    public String getCodCommittente() {
+        return codCommittente;
     }
 
     /**
-     * Imposta il valore della proprietà codiceCommittente.
+     * Imposta il valore della proprietà codCommittente.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setCodiceCommittente(String value) {
-        this.codiceCommittente = value;
+    public void setCodCommittente(String value) {
+        this.codCommittente = value;
     }
 
 }

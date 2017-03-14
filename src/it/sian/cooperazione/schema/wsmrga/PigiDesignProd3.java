@@ -1,7 +1,6 @@
 
 package it.sian.cooperazione.schema.wsmrga;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -23,17 +22,15 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="CodCategoria" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
  *         &lt;element name="AttoCert" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *         &lt;element name="CodClassificazione" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
- *         &lt;element name="CodDopIgp" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
- *         &lt;element name="Provenienza" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
+ *         &lt;element name="CodDopIgp" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodiceDopIgp" minOccurs="0"/>
+ *         &lt;element name="Provenienza" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *         &lt;element name="PaesiProvenienza" type="{http://cooperazione.sian.it/schema/wsmrga/}PaesiProvenienza" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element name="CodZonaViticola" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
- *         &lt;element name="Varieta" type="{http://cooperazione.sian.it/schema/wsmrga/}Cod_ValorePerc" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="CodZonaViticola" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
+ *         &lt;element name="Varieta" type="{http://cooperazione.sian.it/schema/wsmrga/}Cod_Valore" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="AltreVarieta" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoDescrizione" minOccurs="0"/>
  *         &lt;element name="CodSottozona" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
- *         &lt;element name="Biologico" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
- *         &lt;element name="Annata" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoAnnata" minOccurs="0"/>
- *         &lt;element name="TitoloAlcolPot" type="{http://cooperazione.sian.it/schema/wsmrga/}Percentuale" minOccurs="0"/>
- *         &lt;element name="TitoloAlcolEff" type="{http://cooperazione.sian.it/schema/wsmrga/}Percentuale" minOccurs="0"/>
+ *         &lt;element name="Biologico" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
+ *         &lt;element name="Annata" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoAnnataCodice" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -55,9 +52,7 @@ import javax.xml.bind.annotation.XmlType;
     "altreVarieta",
     "codSottozona",
     "biologico",
-    "annata",
-    "titoloAlcolPot",
-    "titoloAlcolEff"
+    "annata"
 })
 public class PigiDesignProd3 {
 
@@ -69,26 +64,22 @@ public class PigiDesignProd3 {
     protected String codClassificazione;
     @XmlElement(name = "CodDopIgp")
     protected String codDopIgp;
-    @XmlElement(name = "Provenienza", required = true)
+    @XmlElement(name = "Provenienza")
     protected String provenienza;
     @XmlElement(name = "PaesiProvenienza")
     protected List<PaesiProvenienza> paesiProvenienza;
-    @XmlElement(name = "CodZonaViticola", required = true)
+    @XmlElement(name = "CodZonaViticola")
     protected String codZonaViticola;
     @XmlElement(name = "Varieta")
-    protected List<CodValorePerc> varieta;
+    protected List<CodValore> varieta;
     @XmlElement(name = "AltreVarieta")
     protected String altreVarieta;
     @XmlElement(name = "CodSottozona")
     protected String codSottozona;
-    @XmlElement(name = "Biologico", required = true)
+    @XmlElement(name = "Biologico")
     protected String biologico;
     @XmlElement(name = "Annata")
-    protected TipoAnnata annata;
-    @XmlElement(name = "TitoloAlcolPot")
-    protected BigDecimal titoloAlcolPot;
-    @XmlElement(name = "TitoloAlcolEff")
-    protected BigDecimal titoloAlcolEff;
+    protected TipoAnnataCodice annata;
 
     /**
      * Recupera il valore della proprietà codCategoria.
@@ -281,13 +272,13 @@ public class PigiDesignProd3 {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link CodValorePerc }
+     * {@link CodValore }
      * 
      * 
      */
-    public List<CodValorePerc> getVarieta() {
+    public List<CodValore> getVarieta() {
         if (varieta == null) {
-            varieta = new ArrayList<CodValorePerc>();
+            varieta = new ArrayList<CodValore>();
         }
         return this.varieta;
     }
@@ -369,10 +360,10 @@ public class PigiDesignProd3 {
      * 
      * @return
      *     possible object is
-     *     {@link TipoAnnata }
+     *     {@link TipoAnnataCodice }
      *     
      */
-    public TipoAnnata getAnnata() {
+    public TipoAnnataCodice getAnnata() {
         return annata;
     }
 
@@ -381,59 +372,11 @@ public class PigiDesignProd3 {
      * 
      * @param value
      *     allowed object is
-     *     {@link TipoAnnata }
+     *     {@link TipoAnnataCodice }
      *     
      */
-    public void setAnnata(TipoAnnata value) {
+    public void setAnnata(TipoAnnataCodice value) {
         this.annata = value;
-    }
-
-    /**
-     * Recupera il valore della proprietà titoloAlcolPot.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public BigDecimal getTitoloAlcolPot() {
-        return titoloAlcolPot;
-    }
-
-    /**
-     * Imposta il valore della proprietà titoloAlcolPot.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public void setTitoloAlcolPot(BigDecimal value) {
-        this.titoloAlcolPot = value;
-    }
-
-    /**
-     * Recupera il valore della proprietà titoloAlcolEff.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public BigDecimal getTitoloAlcolEff() {
-        return titoloAlcolEff;
-    }
-
-    /**
-     * Imposta il valore della proprietà titoloAlcolEff.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public void setTitoloAlcolEff(BigDecimal value) {
-        this.titoloAlcolEff = value;
     }
 
 }

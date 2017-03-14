@@ -23,13 +23,13 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *       &lt;sequence>
  *         &lt;element name="NumOperazione" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoNumOperazione"/>
  *         &lt;element name="DataOperazione" type="{http://www.w3.org/2001/XMLSchema}date"/>
- *         &lt;element name="EsoneroDeroga" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
- *         &lt;element name="NumGiustificativo" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoDescrizione" minOccurs="0"/>
+ *         &lt;element name="EsoneroDeroga" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
+ *         &lt;element name="NumGiustificativo" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *         &lt;element name="DataGiustificativo" type="{http://www.w3.org/2001/XMLSchema}date" minOccurs="0"/>
  *         &lt;element name="CodCommittente" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *         &lt;element name="Note" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoDescrizione" minOccurs="0"/>
  *         &lt;element name="ScdsProdotto1" type="{http://cooperazione.sian.it/schema/wsmrga/}ScdsProdotto1"/>
- *         &lt;element name="ScdsProdotto2" type="{http://cooperazione.sian.it/schema/wsmrga/}ScdsProdotto2" maxOccurs="unbounded"/>
+ *         &lt;element name="ScdsProdotto2" type="{http://cooperazione.sian.it/schema/wsmrga/}ScdsProdotto2" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="ScdsProdotto3" type="{http://cooperazione.sian.it/schema/wsmrga/}ScdsProdotto3"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -59,7 +59,7 @@ public class ScdsOperazione {
     @XmlElement(name = "DataOperazione", required = true)
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar dataOperazione;
-    @XmlElement(name = "EsoneroDeroga", required = true)
+    @XmlElement(name = "EsoneroDeroga")
     protected String esoneroDeroga;
     @XmlElement(name = "NumGiustificativo")
     protected String numGiustificativo;
@@ -72,7 +72,7 @@ public class ScdsOperazione {
     protected String note;
     @XmlElement(name = "ScdsProdotto1", required = true)
     protected ScdsProdotto1 scdsProdotto1;
-    @XmlElement(name = "ScdsProdotto2", required = true)
+    @XmlElement(name = "ScdsProdotto2")
     protected List<ScdsProdotto2> scdsProdotto2;
     @XmlElement(name = "ScdsProdotto3", required = true)
     protected ScdsProdotto3 scdsProdotto3;

@@ -25,8 +25,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="CodCategoria" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
  *         &lt;element name="AttoCert" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *         &lt;element name="CodClassificazione" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
- *         &lt;element name="CodDopIgp" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
+ *         &lt;element name="CodDopIgp" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodiceDopIgp" minOccurs="0"/>
  *         &lt;element name="CodEbacchus" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
+ *         &lt;element name="OrigineUve" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodicePaese" minOccurs="0"/>
  *         &lt;element name="Provenienza" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *         &lt;element name="PaesiProvenienza" type="{http://cooperazione.sian.it/schema/wsmrga/}PaesiProvenienza" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="Varieta" type="{http://cooperazione.sian.it/schema/wsmrga/}Cod_ValorePerc" maxOccurs="unbounded" minOccurs="0"/>
@@ -35,16 +36,14 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="CodVigna" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *         &lt;element name="CodColore" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *         &lt;element name="Menzioni" type="{http://cooperazione.sian.it/schema/wsmrga/}Menzioni" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element name="Biologico" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
- *         &lt;element name="CodTenoreZucc" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
+ *         &lt;element name="Biologico" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *         &lt;element name="Annata" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoAnnata" minOccurs="0"/>
- *         &lt;element name="TitoloAlcolPot" type="{http://cooperazione.sian.it/schema/wsmrga/}Percentuale" minOccurs="0"/>
- *         &lt;element name="TitoloAlcolEff" type="{http://cooperazione.sian.it/schema/wsmrga/}Percentuale" minOccurs="0"/>
- *         &lt;element name="TitoloAlcolTot" type="{http://cooperazione.sian.it/schema/wsmrga/}Percentuale" minOccurs="0"/>
  *         &lt;element name="MassaVolumica" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoMassaVolume" minOccurs="0"/>
  *         &lt;element name="CodStatoFisico" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
  *         &lt;element name="DataCertDOP" type="{http://www.w3.org/2001/XMLSchema}date" minOccurs="0"/>
- *         &lt;element name="NumCertDOP" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoDescrizione" minOccurs="0"/>
+ *         &lt;element name="NumCertDOP" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
+ *         &lt;element name="PraticheEnologiche" type="{http://cooperazione.sian.it/schema/wsmrga/}PraticheEnologiche" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="CodPartita" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -60,6 +59,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "codClassificazione",
     "codDopIgp",
     "codEbacchus",
+    "origineUve",
     "provenienza",
     "paesiProvenienza",
     "varieta",
@@ -69,15 +69,13 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "codColore",
     "menzioni",
     "biologico",
-    "codTenoreZucc",
     "annata",
-    "titoloAlcolPot",
-    "titoloAlcolEff",
-    "titoloAlcolTot",
     "massaVolumica",
     "codStatoFisico",
     "dataCertDOP",
-    "numCertDOP"
+    "numCertDOP",
+    "praticheEnologiche",
+    "codPartita"
 })
 public class EticDesignProd1 {
 
@@ -91,6 +89,8 @@ public class EticDesignProd1 {
     protected String codDopIgp;
     @XmlElement(name = "CodEbacchus")
     protected String codEbacchus;
+    @XmlElement(name = "OrigineUve")
+    protected String origineUve;
     @XmlElement(name = "Provenienza")
     protected String provenienza;
     @XmlElement(name = "PaesiProvenienza")
@@ -107,18 +107,10 @@ public class EticDesignProd1 {
     protected String codColore;
     @XmlElement(name = "Menzioni")
     protected List<Menzioni> menzioni;
-    @XmlElement(name = "Biologico", required = true)
+    @XmlElement(name = "Biologico")
     protected String biologico;
-    @XmlElement(name = "CodTenoreZucc")
-    protected String codTenoreZucc;
     @XmlElement(name = "Annata")
     protected TipoAnnata annata;
-    @XmlElement(name = "TitoloAlcolPot")
-    protected BigDecimal titoloAlcolPot;
-    @XmlElement(name = "TitoloAlcolEff")
-    protected BigDecimal titoloAlcolEff;
-    @XmlElement(name = "TitoloAlcolTot")
-    protected BigDecimal titoloAlcolTot;
     @XmlElement(name = "MassaVolumica")
     protected BigDecimal massaVolumica;
     @XmlElement(name = "CodStatoFisico", required = true)
@@ -128,6 +120,10 @@ public class EticDesignProd1 {
     protected XMLGregorianCalendar dataCertDOP;
     @XmlElement(name = "NumCertDOP")
     protected String numCertDOP;
+    @XmlElement(name = "PraticheEnologiche")
+    protected List<PraticheEnologiche> praticheEnologiche;
+    @XmlElement(name = "CodPartita")
+    protected String codPartita;
 
     /**
      * Recupera il valore della proprietà codCategoria.
@@ -247,6 +243,30 @@ public class EticDesignProd1 {
      */
     public void setCodEbacchus(String value) {
         this.codEbacchus = value;
+    }
+
+    /**
+     * Recupera il valore della proprietà origineUve.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getOrigineUve() {
+        return origineUve;
+    }
+
+    /**
+     * Imposta il valore della proprietà origineUve.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setOrigineUve(String value) {
+        this.origineUve = value;
     }
 
     /**
@@ -481,30 +501,6 @@ public class EticDesignProd1 {
     }
 
     /**
-     * Recupera il valore della proprietà codTenoreZucc.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getCodTenoreZucc() {
-        return codTenoreZucc;
-    }
-
-    /**
-     * Imposta il valore della proprietà codTenoreZucc.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setCodTenoreZucc(String value) {
-        this.codTenoreZucc = value;
-    }
-
-    /**
      * Recupera il valore della proprietà annata.
      * 
      * @return
@@ -526,78 +522,6 @@ public class EticDesignProd1 {
      */
     public void setAnnata(TipoAnnata value) {
         this.annata = value;
-    }
-
-    /**
-     * Recupera il valore della proprietà titoloAlcolPot.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public BigDecimal getTitoloAlcolPot() {
-        return titoloAlcolPot;
-    }
-
-    /**
-     * Imposta il valore della proprietà titoloAlcolPot.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public void setTitoloAlcolPot(BigDecimal value) {
-        this.titoloAlcolPot = value;
-    }
-
-    /**
-     * Recupera il valore della proprietà titoloAlcolEff.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public BigDecimal getTitoloAlcolEff() {
-        return titoloAlcolEff;
-    }
-
-    /**
-     * Imposta il valore della proprietà titoloAlcolEff.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public void setTitoloAlcolEff(BigDecimal value) {
-        this.titoloAlcolEff = value;
-    }
-
-    /**
-     * Recupera il valore della proprietà titoloAlcolTot.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public BigDecimal getTitoloAlcolTot() {
-        return titoloAlcolTot;
-    }
-
-    /**
-     * Imposta il valore della proprietà titoloAlcolTot.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public void setTitoloAlcolTot(BigDecimal value) {
-        this.titoloAlcolTot = value;
     }
 
     /**
@@ -694,6 +618,59 @@ public class EticDesignProd1 {
      */
     public void setNumCertDOP(String value) {
         this.numCertDOP = value;
+    }
+
+    /**
+     * Gets the value of the praticheEnologiche property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the praticheEnologiche property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getPraticheEnologiche().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link PraticheEnologiche }
+     * 
+     * 
+     */
+    public List<PraticheEnologiche> getPraticheEnologiche() {
+        if (praticheEnologiche == null) {
+            praticheEnologiche = new ArrayList<PraticheEnologiche>();
+        }
+        return this.praticheEnologiche;
+    }
+
+    /**
+     * Recupera il valore della proprietà codPartita.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getCodPartita() {
+        return codPartita;
+    }
+
+    /**
+     * Imposta il valore della proprietà codPartita.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setCodPartita(String value) {
+        this.codPartita = value;
     }
 
 }

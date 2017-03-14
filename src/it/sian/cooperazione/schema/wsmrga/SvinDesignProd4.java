@@ -1,7 +1,6 @@
 
 package it.sian.cooperazione.schema.wsmrga;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -23,21 +22,22 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="CodCategoria" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
  *         &lt;element name="AttoCert" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
  *         &lt;element name="CodClassificazione" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
- *         &lt;element name="CodDopIgp" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
- *         &lt;element name="PercIgp" type="{http://cooperazione.sian.it/schema/wsmrga/}Percentuale" minOccurs="0"/>
+ *         &lt;element name="CodDopIgp" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodiceDopIgp" minOccurs="0"/>
  *         &lt;element name="OrigineUve" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodicePaese" minOccurs="0"/>
- *         &lt;element name="Provenienza" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
- *         &lt;element name="CodZonaViticola" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
+ *         &lt;element name="Provenienza" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
+ *         &lt;element name="PaesiProvenienza" type="{http://cooperazione.sian.it/schema/wsmrga/}PaesiProvenienza" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="CodZonaViticola" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *         &lt;element name="Varieta" type="{http://cooperazione.sian.it/schema/wsmrga/}Cod_ValorePerc" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="AltreVarieta" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoDescrizione" minOccurs="0"/>
  *         &lt;element name="CodSottozona" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *         &lt;element name="CodVigna" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
- *         &lt;element name="CodColore" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
+ *         &lt;element name="CodColore" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *         &lt;element name="Menzioni" type="{http://cooperazione.sian.it/schema/wsmrga/}Menzioni" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element name="Biologico" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
+ *         &lt;element name="Biologico" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *         &lt;element name="PraticheEnologiche" type="{http://cooperazione.sian.it/schema/wsmrga/}PraticheEnologiche" maxOccurs="unbounded"/>
- *         &lt;element name="Annata" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoAnnata" minOccurs="0"/>
+ *         &lt;element name="Annata" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoAnnataCodice" minOccurs="0"/>
  *         &lt;element name="CodStatoFisico" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
+ *         &lt;element name="CodPartita" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -52,9 +52,9 @@ import javax.xml.bind.annotation.XmlType;
     "attoCert",
     "codClassificazione",
     "codDopIgp",
-    "percIgp",
     "origineUve",
     "provenienza",
+    "paesiProvenienza",
     "codZonaViticola",
     "varieta",
     "altreVarieta",
@@ -65,7 +65,8 @@ import javax.xml.bind.annotation.XmlType;
     "biologico",
     "praticheEnologiche",
     "annata",
-    "codStatoFisico"
+    "codStatoFisico",
+    "codPartita"
 })
 public class SvinDesignProd4 {
 
@@ -77,13 +78,13 @@ public class SvinDesignProd4 {
     protected String codClassificazione;
     @XmlElement(name = "CodDopIgp")
     protected String codDopIgp;
-    @XmlElement(name = "PercIgp")
-    protected BigDecimal percIgp;
     @XmlElement(name = "OrigineUve")
     protected String origineUve;
-    @XmlElement(name = "Provenienza", required = true)
+    @XmlElement(name = "Provenienza")
     protected String provenienza;
-    @XmlElement(name = "CodZonaViticola", required = true)
+    @XmlElement(name = "PaesiProvenienza")
+    protected List<PaesiProvenienza> paesiProvenienza;
+    @XmlElement(name = "CodZonaViticola")
     protected String codZonaViticola;
     @XmlElement(name = "Varieta")
     protected List<CodValorePerc> varieta;
@@ -93,18 +94,20 @@ public class SvinDesignProd4 {
     protected String codSottozona;
     @XmlElement(name = "CodVigna")
     protected String codVigna;
-    @XmlElement(name = "CodColore", required = true)
+    @XmlElement(name = "CodColore")
     protected String codColore;
     @XmlElement(name = "Menzioni")
     protected List<Menzioni> menzioni;
-    @XmlElement(name = "Biologico", required = true)
+    @XmlElement(name = "Biologico")
     protected String biologico;
     @XmlElement(name = "PraticheEnologiche", required = true)
     protected List<PraticheEnologiche> praticheEnologiche;
     @XmlElement(name = "Annata")
-    protected TipoAnnata annata;
+    protected TipoAnnataCodice annata;
     @XmlElement(name = "CodStatoFisico", required = true)
     protected String codStatoFisico;
+    @XmlElement(name = "CodPartita")
+    protected String codPartita;
 
     /**
      * Recupera il valore della proprietà codCategoria.
@@ -203,30 +206,6 @@ public class SvinDesignProd4 {
     }
 
     /**
-     * Recupera il valore della proprietà percIgp.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public BigDecimal getPercIgp() {
-        return percIgp;
-    }
-
-    /**
-     * Imposta il valore della proprietà percIgp.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public void setPercIgp(BigDecimal value) {
-        this.percIgp = value;
-    }
-
-    /**
      * Recupera il valore della proprietà origineUve.
      * 
      * @return
@@ -272,6 +251,35 @@ public class SvinDesignProd4 {
      */
     public void setProvenienza(String value) {
         this.provenienza = value;
+    }
+
+    /**
+     * Gets the value of the paesiProvenienza property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the paesiProvenienza property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getPaesiProvenienza().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link PaesiProvenienza }
+     * 
+     * 
+     */
+    public List<PaesiProvenienza> getPaesiProvenienza() {
+        if (paesiProvenienza == null) {
+            paesiProvenienza = new ArrayList<PaesiProvenienza>();
+        }
+        return this.paesiProvenienza;
     }
 
     /**
@@ -510,10 +518,10 @@ public class SvinDesignProd4 {
      * 
      * @return
      *     possible object is
-     *     {@link TipoAnnata }
+     *     {@link TipoAnnataCodice }
      *     
      */
-    public TipoAnnata getAnnata() {
+    public TipoAnnataCodice getAnnata() {
         return annata;
     }
 
@@ -522,10 +530,10 @@ public class SvinDesignProd4 {
      * 
      * @param value
      *     allowed object is
-     *     {@link TipoAnnata }
+     *     {@link TipoAnnataCodice }
      *     
      */
-    public void setAnnata(TipoAnnata value) {
+    public void setAnnata(TipoAnnataCodice value) {
         this.annata = value;
     }
 
@@ -551,6 +559,30 @@ public class SvinDesignProd4 {
      */
     public void setCodStatoFisico(String value) {
         this.codStatoFisico = value;
+    }
+
+    /**
+     * Recupera il valore della proprietà codPartita.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getCodPartita() {
+        return codPartita;
+    }
+
+    /**
+     * Imposta il valore della proprietà codPartita.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setCodPartita(String value) {
+        this.codPartita = value;
     }
 
 }

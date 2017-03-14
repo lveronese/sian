@@ -1,6 +1,8 @@
 
 package it.sian.cooperazione.schema.wsmrga;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -21,13 +23,13 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *       &lt;sequence>
  *         &lt;element name="NumOperazione" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoNumOperazione"/>
  *         &lt;element name="DataOperazione" type="{http://www.w3.org/2001/XMLSchema}date"/>
- *         &lt;element name="EsoneroDeroga" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
- *         &lt;element name="NumGiustificativo" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoDescrizione" minOccurs="0"/>
+ *         &lt;element name="EsoneroDeroga" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
+ *         &lt;element name="NumGiustificativo" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *         &lt;element name="DataGiustificativo" type="{http://www.w3.org/2001/XMLSchema}date" minOccurs="0"/>
  *         &lt;element name="CodDestinatario" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *         &lt;element name="CodCommittente" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *         &lt;element name="Note" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoDescrizione" minOccurs="0"/>
- *         &lt;element name="ProdUssd" type="{http://cooperazione.sian.it/schema/wsmrga/}ProdottoUssd"/>
+ *         &lt;element name="ProdUssd" type="{http://cooperazione.sian.it/schema/wsmrga/}ProdottoUssd" maxOccurs="unbounded"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -55,7 +57,7 @@ public class UssdOperazione {
     @XmlElement(name = "DataOperazione", required = true)
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar dataOperazione;
-    @XmlElement(name = "EsoneroDeroga", required = true)
+    @XmlElement(name = "EsoneroDeroga")
     protected String esoneroDeroga;
     @XmlElement(name = "NumGiustificativo")
     protected String numGiustificativo;
@@ -69,7 +71,7 @@ public class UssdOperazione {
     @XmlElement(name = "Note")
     protected String note;
     @XmlElement(name = "ProdUssd", required = true)
-    protected ProdottoUssd prodUssd;
+    protected List<ProdottoUssd> prodUssd;
 
     /**
      * Recupera il valore della proprietà numOperazione.
@@ -256,27 +258,32 @@ public class UssdOperazione {
     }
 
     /**
-     * Recupera il valore della proprietà prodUssd.
+     * Gets the value of the prodUssd property.
      * 
-     * @return
-     *     possible object is
-     *     {@link ProdottoUssd }
-     *     
-     */
-    public ProdottoUssd getProdUssd() {
-        return prodUssd;
-    }
-
-    /**
-     * Imposta il valore della proprietà prodUssd.
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the prodUssd property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link ProdottoUssd }
-     *     
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getProdUssd().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link ProdottoUssd }
+     * 
+     * 
      */
-    public void setProdUssd(ProdottoUssd value) {
-        this.prodUssd = value;
+    public List<ProdottoUssd> getProdUssd() {
+        if (prodUssd == null) {
+            prodUssd = new ArrayList<ProdottoUssd>();
+        }
+        return this.prodUssd;
     }
 
 }

@@ -27,10 +27,11 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="Provenienza" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *         &lt;element name="PaesiProvenienza" type="{http://cooperazione.sian.it/schema/wsmrga/}PaesiProvenienza" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="CodZonaViticola" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
- *         &lt;element name="CodColore" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
+ *         &lt;element name="CodColore" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *         &lt;element name="PraticheEnologiche" type="{http://cooperazione.sian.it/schema/wsmrga/}PraticheEnologiche" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="MassaVolumica" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoMassaVolume" minOccurs="0"/>
  *         &lt;element name="CodStatoFisico" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
+ *         &lt;element name="CodPartita" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -51,7 +52,8 @@ import javax.xml.bind.annotation.XmlType;
     "codColore",
     "praticheEnologiche",
     "massaVolumica",
-    "codStatoFisico"
+    "codStatoFisico",
+    "codPartita"
 })
 public class SupeDesignProd2 {
 
@@ -69,7 +71,7 @@ public class SupeDesignProd2 {
     protected List<PaesiProvenienza> paesiProvenienza;
     @XmlElement(name = "CodZonaViticola")
     protected String codZonaViticola;
-    @XmlElement(name = "CodColore", required = true)
+    @XmlElement(name = "CodColore")
     protected String codColore;
     @XmlElement(name = "PraticheEnologiche")
     protected List<PraticheEnologiche> praticheEnologiche;
@@ -77,6 +79,8 @@ public class SupeDesignProd2 {
     protected BigDecimal massaVolumica;
     @XmlElement(name = "CodStatoFisico", required = true)
     protected String codStatoFisico;
+    @XmlElement(name = "CodPartita")
+    protected String codPartita;
 
     /**
      * Recupera il valore della proprietà codCategoria.
@@ -350,6 +354,30 @@ public class SupeDesignProd2 {
      */
     public void setCodStatoFisico(String value) {
         this.codStatoFisico = value;
+    }
+
+    /**
+     * Recupera il valore della proprietà codPartita.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getCodPartita() {
+        return codPartita;
+    }
+
+    /**
+     * Imposta il valore della proprietà codPartita.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setCodPartita(String value) {
+        this.codPartita = value;
     }
 
 }

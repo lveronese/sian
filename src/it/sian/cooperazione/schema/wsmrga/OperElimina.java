@@ -44,6 +44,7 @@ public class OperElimina {
     @XmlElement(name = "NumOperazione")
     protected int numOperazione;
     @XmlElement(name = "CodOperazione", required = true)
+    @XmlSchemaType(name = "string")
     protected CodiceOperazione codOperazione;
 
     /**

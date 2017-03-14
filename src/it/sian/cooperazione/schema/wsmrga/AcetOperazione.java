@@ -27,7 +27,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="Note" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoDescrizione" minOccurs="0"/>
  *         &lt;element name="AcetProdotto1" type="{http://cooperazione.sian.it/schema/wsmrga/}AcetProdotto1" maxOccurs="unbounded"/>
  *         &lt;element name="AcetProdotto2" type="{http://cooperazione.sian.it/schema/wsmrga/}AcetProdotto2" minOccurs="0"/>
- *         &lt;element name="AcetProdotto3" type="{http://cooperazione.sian.it/schema/wsmrga/}AcetProdotto3"/>
+ *         &lt;element name="AcetProdotto3" type="{http://cooperazione.sian.it/schema/wsmrga/}AcetProdotto3" minOccurs="0"/>
+ *         &lt;element name="AcetProdotto4" type="{http://cooperazione.sian.it/schema/wsmrga/}AcetProdotto4"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -44,7 +45,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "note",
     "acetProdotto1",
     "acetProdotto2",
-    "acetProdotto3"
+    "acetProdotto3",
+    "acetProdotto4"
 })
 public class AcetOperazione {
 
@@ -61,8 +63,10 @@ public class AcetOperazione {
     protected List<AcetProdotto1> acetProdotto1;
     @XmlElement(name = "AcetProdotto2")
     protected AcetProdotto2 acetProdotto2;
-    @XmlElement(name = "AcetProdotto3", required = true)
+    @XmlElement(name = "AcetProdotto3")
     protected AcetProdotto3 acetProdotto3;
+    @XmlElement(name = "AcetProdotto4", required = true)
+    protected AcetProdotto4 acetProdotto4;
 
     /**
      * Recupera il valore della proprietà numOperazione.
@@ -227,6 +231,30 @@ public class AcetOperazione {
      */
     public void setAcetProdotto3(AcetProdotto3 value) {
         this.acetProdotto3 = value;
+    }
+
+    /**
+     * Recupera il valore della proprietà acetProdotto4.
+     * 
+     * @return
+     *     possible object is
+     *     {@link AcetProdotto4 }
+     *     
+     */
+    public AcetProdotto4 getAcetProdotto4() {
+        return acetProdotto4;
+    }
+
+    /**
+     * Imposta il valore della proprietà acetProdotto4.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link AcetProdotto4 }
+     *     
+     */
+    public void setAcetProdotto4(AcetProdotto4 value) {
+        this.acetProdotto4 = value;
     }
 
 }

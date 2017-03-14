@@ -20,6 +20,7 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element name="CodOper" type="{http://cooperazione.sian.it/schema/wsmrga/}CUAA"/>
  *         &lt;element name="CodiceIcqrf" type="{http://cooperazione.sian.it/schema/wsmrga/}CodiceIcq"/>
+ *         &lt;element name="CodVigna" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -31,7 +32,8 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
     "codOper",
-    "codiceIcqrf"
+    "codiceIcqrf",
+    "codVigna"
 })
 @XmlRootElement(name = "VisVigneSiRPVInput")
 public class VisVigneSiRPVInput {
@@ -40,6 +42,8 @@ public class VisVigneSiRPVInput {
     protected CUAA codOper;
     @XmlElement(name = "CodiceIcqrf", required = true)
     protected String codiceIcqrf;
+    @XmlElement(name = "CodVigna")
+    protected String codVigna;
 
     /**
      * Recupera il valore della proprietà codOper.
@@ -87,6 +91,30 @@ public class VisVigneSiRPVInput {
      */
     public void setCodiceIcqrf(String value) {
         this.codiceIcqrf = value;
+    }
+
+    /**
+     * Recupera il valore della proprietà codVigna.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getCodVigna() {
+        return codVigna;
+    }
+
+    /**
+     * Imposta il valore della proprietà codVigna.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setCodVigna(String value) {
+        this.codVigna = value;
     }
 
 }

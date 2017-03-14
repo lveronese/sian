@@ -21,9 +21,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *       &lt;sequence>
  *         &lt;element name="NumOperazione" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoNumOperazione"/>
  *         &lt;element name="DataOperazione" type="{http://www.w3.org/2001/XMLSchema}date"/>
- *         &lt;element name="EsoneroDeroga" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
- *         &lt;element name="NumGiustificativo" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoDescrizione"/>
- *         &lt;element name="DataGiustificativo" type="{http://www.w3.org/2001/XMLSchema}date"/>
+ *         &lt;element name="EsoneroDeroga" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
+ *         &lt;element name="NumGiustificativo" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
+ *         &lt;element name="DataGiustificativo" type="{http://www.w3.org/2001/XMLSchema}date" minOccurs="0"/>
  *         &lt;element name="CodCommittente" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *         &lt;element name="Note" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoDescrizione" minOccurs="0"/>
  *         &lt;element name="AardProdotto1" type="{http://cooperazione.sian.it/schema/wsmrga/}AardProdotto1"/>
@@ -55,11 +55,11 @@ public class AardOperazione {
     @XmlElement(name = "DataOperazione", required = true)
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar dataOperazione;
-    @XmlElement(name = "EsoneroDeroga", required = true)
+    @XmlElement(name = "EsoneroDeroga")
     protected String esoneroDeroga;
-    @XmlElement(name = "NumGiustificativo", required = true)
+    @XmlElement(name = "NumGiustificativo")
     protected String numGiustificativo;
-    @XmlElement(name = "DataGiustificativo", required = true)
+    @XmlElement(name = "DataGiustificativo")
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar dataGiustificativo;
     @XmlElement(name = "CodCommittente")

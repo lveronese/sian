@@ -1,7 +1,6 @@
 
 package it.sian.cooperazione.schema.wsmrga;
 
-import java.math.BigDecimal;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -20,7 +19,6 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element name="CodCategoria" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
  *         &lt;element name="CodClassificazione" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
- *         &lt;element name="TitoloAlcolEff" type="{http://cooperazione.sian.it/schema/wsmrga/}Percentuale"/>
  *         &lt;element name="CodStatoFisico" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -34,7 +32,6 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "DistDesignProd3", propOrder = {
     "codCategoria",
     "codClassificazione",
-    "titoloAlcolEff",
     "codStatoFisico"
 })
 public class DistDesignProd3 {
@@ -43,8 +40,6 @@ public class DistDesignProd3 {
     protected String codCategoria;
     @XmlElement(name = "CodClassificazione")
     protected String codClassificazione;
-    @XmlElement(name = "TitoloAlcolEff", required = true)
-    protected BigDecimal titoloAlcolEff;
     @XmlElement(name = "CodStatoFisico", required = true)
     protected String codStatoFisico;
 
@@ -94,30 +89,6 @@ public class DistDesignProd3 {
      */
     public void setCodClassificazione(String value) {
         this.codClassificazione = value;
-    }
-
-    /**
-     * Recupera il valore della proprietà titoloAlcolEff.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public BigDecimal getTitoloAlcolEff() {
-        return titoloAlcolEff;
-    }
-
-    /**
-     * Imposta il valore della proprietà titoloAlcolEff.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public void setTitoloAlcolEff(BigDecimal value) {
-        this.titoloAlcolEff = value;
     }
 
     /**

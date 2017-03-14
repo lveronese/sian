@@ -23,17 +23,16 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="CodCategoria" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
  *         &lt;element name="AttoCert" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *         &lt;element name="CodClassificazione" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
- *         &lt;element name="CodDopIgp" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
+ *         &lt;element name="CodDopIgp" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodiceDopIgp" minOccurs="0"/>
  *         &lt;element name="Provenienza" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *         &lt;element name="OrigineUve" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodicePaese" minOccurs="0"/>
  *         &lt;element name="PaesiProvenienza" type="{http://cooperazione.sian.it/schema/wsmrga/}PaesiProvenienza" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element name="Varieta" type="{http://cooperazione.sian.it/schema/wsmrga/}Cod_ValorePerc" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element name="CodZonaViticola" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
+ *         &lt;element name="Varieta" type="{http://cooperazione.sian.it/schema/wsmrga/}Cod_Valore" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="CodZonaViticola" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *         &lt;element name="CodColore" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *         &lt;element name="Biologico" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
- *         &lt;element name="TitoloAlcolPot" type="{http://cooperazione.sian.it/schema/wsmrga/}Percentuale"/>
+ *         &lt;element name="PraticheEnologiche" type="{http://cooperazione.sian.it/schema/wsmrga/}PraticheEnologiche" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="MassaVolumica" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoMassaVolume"/>
- *         &lt;element name="TitoloAlcolTot" type="{http://cooperazione.sian.it/schema/wsmrga/}Percentuale" minOccurs="0"/>
  *         &lt;element name="CodStatoFisico" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -56,9 +55,8 @@ import javax.xml.bind.annotation.XmlType;
     "codZonaViticola",
     "codColore",
     "biologico",
-    "titoloAlcolPot",
+    "praticheEnologiche",
     "massaVolumica",
-    "titoloAlcolTot",
     "codStatoFisico"
 })
 public class ProdottoARMC2 {
@@ -78,19 +76,17 @@ public class ProdottoARMC2 {
     @XmlElement(name = "PaesiProvenienza")
     protected List<PaesiProvenienza> paesiProvenienza;
     @XmlElement(name = "Varieta")
-    protected List<CodValorePerc> varieta;
-    @XmlElement(name = "CodZonaViticola", required = true)
+    protected List<CodValore> varieta;
+    @XmlElement(name = "CodZonaViticola")
     protected String codZonaViticola;
     @XmlElement(name = "CodColore")
     protected String codColore;
     @XmlElement(name = "Biologico")
     protected String biologico;
-    @XmlElement(name = "TitoloAlcolPot", required = true)
-    protected BigDecimal titoloAlcolPot;
+    @XmlElement(name = "PraticheEnologiche")
+    protected List<PraticheEnologiche> praticheEnologiche;
     @XmlElement(name = "MassaVolumica", required = true)
     protected BigDecimal massaVolumica;
-    @XmlElement(name = "TitoloAlcolTot")
-    protected BigDecimal titoloAlcolTot;
     @XmlElement(name = "CodStatoFisico", required = true)
     protected String codStatoFisico;
 
@@ -285,13 +281,13 @@ public class ProdottoARMC2 {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link CodValorePerc }
+     * {@link CodValore }
      * 
      * 
      */
-    public List<CodValorePerc> getVarieta() {
+    public List<CodValore> getVarieta() {
         if (varieta == null) {
-            varieta = new ArrayList<CodValorePerc>();
+            varieta = new ArrayList<CodValore>();
         }
         return this.varieta;
     }
@@ -369,27 +365,32 @@ public class ProdottoARMC2 {
     }
 
     /**
-     * Recupera il valore della proprietà titoloAlcolPot.
+     * Gets the value of the praticheEnologiche property.
      * 
-     * @return
-     *     possible object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public BigDecimal getTitoloAlcolPot() {
-        return titoloAlcolPot;
-    }
-
-    /**
-     * Imposta il valore della proprietà titoloAlcolPot.
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the praticheEnologiche property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link BigDecimal }
-     *     
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getPraticheEnologiche().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link PraticheEnologiche }
+     * 
+     * 
      */
-    public void setTitoloAlcolPot(BigDecimal value) {
-        this.titoloAlcolPot = value;
+    public List<PraticheEnologiche> getPraticheEnologiche() {
+        if (praticheEnologiche == null) {
+            praticheEnologiche = new ArrayList<PraticheEnologiche>();
+        }
+        return this.praticheEnologiche;
     }
 
     /**
@@ -414,30 +415,6 @@ public class ProdottoARMC2 {
      */
     public void setMassaVolumica(BigDecimal value) {
         this.massaVolumica = value;
-    }
-
-    /**
-     * Recupera il valore della proprietà titoloAlcolTot.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public BigDecimal getTitoloAlcolTot() {
-        return titoloAlcolTot;
-    }
-
-    /**
-     * Imposta il valore della proprietà titoloAlcolTot.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public void setTitoloAlcolTot(BigDecimal value) {
-        this.titoloAlcolTot = value;
     }
 
     /**

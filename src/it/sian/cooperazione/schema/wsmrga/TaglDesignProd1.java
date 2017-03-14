@@ -25,13 +25,12 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="CodCategoria" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
  *         &lt;element name="AttoCert" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *         &lt;element name="CodClassificazione" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
- *         &lt;element name="CodDopIgp" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
- *         &lt;element name="PercIgp" type="{http://cooperazione.sian.it/schema/wsmrga/}Percentuale" minOccurs="0"/>
+ *         &lt;element name="CodDopIgp" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodiceDopIgp" minOccurs="0"/>
  *         &lt;element name="CodEbacchus" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *         &lt;element name="OrigineUve" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodicePaese" minOccurs="0"/>
  *         &lt;element name="Provenienza" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *         &lt;element name="PaesiProvenienza" type="{http://cooperazione.sian.it/schema/wsmrga/}PaesiProvenienza" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element name="CodZonaViticola" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
+ *         &lt;element name="CodZonaViticola" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *         &lt;element name="Varieta" type="{http://cooperazione.sian.it/schema/wsmrga/}Cod_ValorePerc" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="AltreVarieta" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoDescrizione" minOccurs="0"/>
  *         &lt;element name="CodSottozona" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
@@ -39,15 +38,13 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="CodColore" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *         &lt;element name="Menzioni" type="{http://cooperazione.sian.it/schema/wsmrga/}Menzioni" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="Biologico" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
- *         &lt;element name="CodTenoreZucc" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *         &lt;element name="PraticheEnologiche" type="{http://cooperazione.sian.it/schema/wsmrga/}PraticheEnologiche" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="Annata" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoAnnata" minOccurs="0"/>
- *         &lt;element name="TitoloAlcolEff" type="{http://cooperazione.sian.it/schema/wsmrga/}Percentuale" minOccurs="0"/>
- *         &lt;element name="TitoloAlcolTot" type="{http://cooperazione.sian.it/schema/wsmrga/}Percentuale" minOccurs="0"/>
  *         &lt;element name="MassaVolumica" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoMassaVolume" minOccurs="0"/>
  *         &lt;element name="CodStatoFisico" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice"/>
  *         &lt;element name="DataCertDOP" type="{http://www.w3.org/2001/XMLSchema}date" minOccurs="0"/>
- *         &lt;element name="NumCertDOP" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoDescrizione" minOccurs="0"/>
+ *         &lt;element name="CodPartita" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
+ *         &lt;element name="NumCertDOP" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -62,7 +59,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "attoCert",
     "codClassificazione",
     "codDopIgp",
-    "percIgp",
     "codEbacchus",
     "origineUve",
     "provenienza",
@@ -75,14 +71,12 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "codColore",
     "menzioni",
     "biologico",
-    "codTenoreZucc",
     "praticheEnologiche",
     "annata",
-    "titoloAlcolEff",
-    "titoloAlcolTot",
     "massaVolumica",
     "codStatoFisico",
     "dataCertDOP",
+    "codPartita",
     "numCertDOP"
 })
 public class TaglDesignProd1 {
@@ -95,8 +89,6 @@ public class TaglDesignProd1 {
     protected String codClassificazione;
     @XmlElement(name = "CodDopIgp")
     protected String codDopIgp;
-    @XmlElement(name = "PercIgp")
-    protected BigDecimal percIgp;
     @XmlElement(name = "CodEbacchus")
     protected String codEbacchus;
     @XmlElement(name = "OrigineUve")
@@ -105,7 +97,7 @@ public class TaglDesignProd1 {
     protected String provenienza;
     @XmlElement(name = "PaesiProvenienza")
     protected List<PaesiProvenienza> paesiProvenienza;
-    @XmlElement(name = "CodZonaViticola", required = true)
+    @XmlElement(name = "CodZonaViticola")
     protected String codZonaViticola;
     @XmlElement(name = "Varieta")
     protected List<CodValorePerc> varieta;
@@ -121,16 +113,10 @@ public class TaglDesignProd1 {
     protected List<Menzioni> menzioni;
     @XmlElement(name = "Biologico")
     protected String biologico;
-    @XmlElement(name = "CodTenoreZucc")
-    protected String codTenoreZucc;
     @XmlElement(name = "PraticheEnologiche")
     protected List<PraticheEnologiche> praticheEnologiche;
     @XmlElement(name = "Annata")
     protected TipoAnnata annata;
-    @XmlElement(name = "TitoloAlcolEff")
-    protected BigDecimal titoloAlcolEff;
-    @XmlElement(name = "TitoloAlcolTot")
-    protected BigDecimal titoloAlcolTot;
     @XmlElement(name = "MassaVolumica")
     protected BigDecimal massaVolumica;
     @XmlElement(name = "CodStatoFisico", required = true)
@@ -138,6 +124,8 @@ public class TaglDesignProd1 {
     @XmlElement(name = "DataCertDOP")
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar dataCertDOP;
+    @XmlElement(name = "CodPartita")
+    protected String codPartita;
     @XmlElement(name = "NumCertDOP")
     protected String numCertDOP;
 
@@ -235,30 +223,6 @@ public class TaglDesignProd1 {
      */
     public void setCodDopIgp(String value) {
         this.codDopIgp = value;
-    }
-
-    /**
-     * Recupera il valore della proprietà percIgp.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public BigDecimal getPercIgp() {
-        return percIgp;
-    }
-
-    /**
-     * Imposta il valore della proprietà percIgp.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public void setPercIgp(BigDecimal value) {
-        this.percIgp = value;
     }
 
     /**
@@ -565,30 +529,6 @@ public class TaglDesignProd1 {
     }
 
     /**
-     * Recupera il valore della proprietà codTenoreZucc.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getCodTenoreZucc() {
-        return codTenoreZucc;
-    }
-
-    /**
-     * Imposta il valore della proprietà codTenoreZucc.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setCodTenoreZucc(String value) {
-        this.codTenoreZucc = value;
-    }
-
-    /**
      * Gets the value of the praticheEnologiche property.
      * 
      * <p>
@@ -639,54 +579,6 @@ public class TaglDesignProd1 {
      */
     public void setAnnata(TipoAnnata value) {
         this.annata = value;
-    }
-
-    /**
-     * Recupera il valore della proprietà titoloAlcolEff.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public BigDecimal getTitoloAlcolEff() {
-        return titoloAlcolEff;
-    }
-
-    /**
-     * Imposta il valore della proprietà titoloAlcolEff.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public void setTitoloAlcolEff(BigDecimal value) {
-        this.titoloAlcolEff = value;
-    }
-
-    /**
-     * Recupera il valore della proprietà titoloAlcolTot.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public BigDecimal getTitoloAlcolTot() {
-        return titoloAlcolTot;
-    }
-
-    /**
-     * Imposta il valore della proprietà titoloAlcolTot.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public void setTitoloAlcolTot(BigDecimal value) {
-        this.titoloAlcolTot = value;
     }
 
     /**
@@ -759,6 +651,30 @@ public class TaglDesignProd1 {
      */
     public void setDataCertDOP(XMLGregorianCalendar value) {
         this.dataCertDOP = value;
+    }
+
+    /**
+     * Recupera il valore della proprietà codPartita.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getCodPartita() {
+        return codPartita;
+    }
+
+    /**
+     * Imposta il valore della proprietà codPartita.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setCodPartita(String value) {
+        this.codPartita = value;
     }
 
     /**

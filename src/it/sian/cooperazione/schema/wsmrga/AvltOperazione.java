@@ -23,7 +23,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *       &lt;sequence>
  *         &lt;element name="NumOperazione" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoNumOperazione"/>
  *         &lt;element name="DataOperazione" type="{http://www.w3.org/2001/XMLSchema}date"/>
- *         &lt;element name="NumGiustificativo" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoDescrizione" minOccurs="0"/>
+ *         &lt;element name="EsoneroDeroga" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
+ *         &lt;element name="NumGiustificativo" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *         &lt;element name="DataGiustificativo" type="{http://www.w3.org/2001/XMLSchema}date" minOccurs="0"/>
  *         &lt;element name="CodCommittente" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoCodice" minOccurs="0"/>
  *         &lt;element name="Note" type="{http://cooperazione.sian.it/schema/wsmrga/}TipoDescrizione" minOccurs="0"/>
@@ -42,6 +43,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 @XmlType(name = "AvltOperazione", propOrder = {
     "numOperazione",
     "dataOperazione",
+    "esoneroDeroga",
     "numGiustificativo",
     "dataGiustificativo",
     "codCommittente",
@@ -57,6 +59,8 @@ public class AvltOperazione {
     @XmlElement(name = "DataOperazione", required = true)
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar dataOperazione;
+    @XmlElement(name = "EsoneroDeroga")
+    protected String esoneroDeroga;
     @XmlElement(name = "NumGiustificativo")
     protected String numGiustificativo;
     @XmlElement(name = "DataGiustificativo")
@@ -111,6 +115,30 @@ public class AvltOperazione {
      */
     public void setDataOperazione(XMLGregorianCalendar value) {
         this.dataOperazione = value;
+    }
+
+    /**
+     * Recupera il valore della proprietà esoneroDeroga.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getEsoneroDeroga() {
+        return esoneroDeroga;
+    }
+
+    /**
+     * Imposta il valore della proprietà esoneroDeroga.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setEsoneroDeroga(String value) {
+        this.esoneroDeroga = value;
     }
 
     /**
